@@ -68,6 +68,12 @@ export class RegistrationComponent implements OnInit {
     this.loading = true;
     this.message = null;
 
+    this.authService.registrarUsuario(this.form.value.username, this.form.value.password, this.form.value.position)
+    .finally( () => this.loading = false)
+    .subscribe( response => {
+      console.log(response)
+      this.router.navigate(['/login']);
+    })
   //   this.authService.activate(this.uuid, this.username, this.form.controls['password'].value)
   //   .finally(() => this.loading = false)
   //   .subscribe(

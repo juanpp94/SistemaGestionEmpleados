@@ -19,7 +19,13 @@
                         <!-- col full-->
                         <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
                             <mat-form-field>
-                                <input matInput placeholder="Cargo" [formControl]="form.controls['position']"> 
+                                <mat-select placeholder="Cargo" [formControl]="form.controls['position']">
+                                    <mat-option [value]="1">Estudiante</mat-option>
+                                    <mat-option [value]="2">Trainee</mat-option>
+                                    <mat-option [value]="3">Junior</mat-option>
+                                    <mat-option [value]="4">Semi-Senior</mat-option>
+                                    <mat-option [value]="5">Senior</mat-option>
+                                </mat-select>
                             </mat-form-field>
                             <small *ngIf="form.controls['position'].hasError('required') && form.controls['position'].touched" 
                             class="text-danger support-text">Por favor introduzca su cargo</small>

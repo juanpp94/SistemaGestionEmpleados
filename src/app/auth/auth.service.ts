@@ -24,7 +24,6 @@ export class AuthService {
     login(username: string, password: string): Observable<any> {
         let headers = new HttpHeaders();
         headers = headers.set('Authorization', 'Basic ' + btoa(username + ':' + password))
-                         .set('canal', 'cG9ydGFsYWRtaW5lbXAx=') 
                          .set('Content-Type', 'application/json');
         return this.http.post(environment.apiUrl.concat('/').concat(username).concat('/inicio-sesion'), null,
             {
@@ -104,6 +103,25 @@ export class AuthService {
         } else {
             return false;
         }
+    }
+
+    getUsuarios(): Observable<any> {
+        let headers = new HttpHeaders();
+        headers = headers.set('Content-Type', 'application/json');
+        return this.http.get(environment.apiUrl.concat('/usuarios'), 
+            { headers: headers });
+    }
+
+    registrarUsuario(username, password, position) {
+        let headers = new HttpHeaders();
+        headers = headers.set('Content-Type', 'application/json');
+        let body = {
+            email: username,
+            password: password,
+            position: position
+        }
+        return this.http.post(environment.apiUrl.concat('/usuarios/'), body, 
+            { headers: headers });
     }
 
 }

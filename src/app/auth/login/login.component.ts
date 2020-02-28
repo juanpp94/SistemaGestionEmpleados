@@ -44,7 +44,16 @@ export class LoginComponent implements OnInit {
   onLogin() {
     this.loggingIn = true;
     this.message = null;
-    this.router.navigate(['/portal']);
+    this.authService.getUsuarios()
+    .finally( () => this.loggingIn = false )
+    .subscribe( response => {
+      console.log(response);
+      let usuarios = response;
+      let found = usuarios.find( u => u.email == this.form.value.username )
+      if ( found.password == this.form.value.password ) {
+        this.router.navigate(['/portal']);
+      }
+    })
     // this.authService.login(this.form.controls['username'].value, this.form.controls['password'].value)
     // .finally(() => this.loggingIn = false)
     // .subscribe(
