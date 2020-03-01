@@ -1,0 +1,48 @@
+<div fxLayout="row wrap">
+
+    <div fxFlex="100%">
+        <div *ngIf="message" fxLayout="row" fxLayoutAlign="center">
+            <div [class]="message.class">{{message.text}}</div>
+        </div>
+    </div>
+
+    <div fxFlex="100%">
+
+        <div fxLayout="row" fxLayout.lt-md="column">
+            <mat-card fxFlex="50%">
+                <mat-card-content>
+                    <div class="d-flex no-block">
+                        <div class="m-r-10 no-shrink">
+                            <button mat-fab mat-card-icon>
+                                <mat-icon *ngIf="!loading">assignment_turned_in</mat-icon>
+                                <mat-spinner *ngIf="loading" matSuffix diameter="20"></mat-spinner>
+                            </button>
+                        </div>
+                        <div>
+                            <h6 class="m-0 m-l-10">Tarea 1</h6>
+                            <h3 class="m-0 m-l-10">0</h3>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+    
+            <mat-card fxFlex="50%">
+                <mat-card-content>
+                    <div class="d-flex no-block">
+                        <div class="m-r-10 no-shrink">
+                            <button mat-fab mat-card-icon >
+                                <mat-icon *ngIf="!loading">assignment_turned_in</mat-icon>
+                                <mat-spinner *ngIf="loading" matSuffix diameter="20"></mat-spinner>
+                            </button>
+                        </div>
+                        <div>
+                            <h6 class="m-0 m-l-10"> Tarea 2 </h6>
+                            <h3 class="m-0 m-l-10">0</h3>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+    </div>
+</div>

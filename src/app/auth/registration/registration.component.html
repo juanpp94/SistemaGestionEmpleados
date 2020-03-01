@@ -1,0 +1,71 @@
+<div class="login-register"  style="background-image:url(assets/images/background/3.jpg);">
+    <div class="login-register-box">
+        <mat-card>
+            <mat-card-content>
+                <form [formGroup]="form" (ngSubmit)="onActivate()">
+                    <div class="text-center">
+                        <img mat-card-image alt="homepage" src="assets/images/ubicutus-logo.png">
+                        <h4 class="m-t-4">Por favor registre su cuenta</h4>
+                    </div>
+                    <div fxLayout="row wrap">
+                        <!-- col full-->
+                        <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                            <mat-form-field>
+                                <input matInput placeholder="Usuario" [formControl]="form.controls['username']"> 
+                            </mat-form-field>
+                            <small *ngIf="form.controls['username'].hasError('required') && form.controls['username'].touched" 
+                            class="text-danger support-text">Por favor introduzca su correo</small>
+                        </div>
+                        <!-- col full-->
+                        <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                            <mat-form-field>
+                                <mat-select placeholder="Cargo" [formControl]="form.controls['position']">
+                                    <mat-option [value]="1">Estudiante</mat-option>
+                                    <mat-option [value]="2">Trainee</mat-option>
+                                    <mat-option [value]="3">Junior</mat-option>
+                                    <mat-option [value]="4">Semi-Senior</mat-option>
+                                    <mat-option [value]="5">Senior</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <small *ngIf="form.controls['position'].hasError('required') && form.controls['position'].touched" 
+                            class="text-danger support-text">Por favor introduzca su cargo</small>
+                        </div>
+                        <!-- col full-->
+                        <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                            <mat-form-field>
+                                <input matInput type="password" placeholder="Contraseña" [formControl]="form.controls['password']"> 
+                            </mat-form-field>
+                            <small *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched" 
+                            class="text-danger support-text">Por favor introduzca su contraseña</small>
+                        </div>
+                        <!-- col full-->
+                        <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                            <mat-form-field>
+                                <input matInput type="password" placeholder="Confirmación" [formControl]="form.controls['confirmation']"> 
+                            </mat-form-field>
+                            <small *ngIf="form.controls['confirmation'].hasError('required') && form.controls['confirmation'].touched" 
+                            class="text-danger support-text">Por favor confirme su contraseña</small>
+                        </div>
+                        <!-- col full-->
+                        <div *ngIf="message" fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100" class="message">
+                            <small class="text-danger support-text">{{ message }}</small>
+                        </div>
+                        <div *ngIf="loading" fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100" fxLayoutAlign="center">
+                            <mat-spinner diameter="50"></mat-spinner>
+                        </div>
+                        <!-- col full-->
+                        <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                            <button mat-raised-button color="primary" class="btn-block btn-lg m-t-20 m-b-20" type="submit" [disabled]="loading || !form.valid">Registrar Cuenta</button> 
+                        </div>
+                        <!-- col full-->
+                        <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                            <span fxLayoutAlign="center" [routerLink]="['/login']"> 
+                                <small> Iniciar Sesión</small>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
