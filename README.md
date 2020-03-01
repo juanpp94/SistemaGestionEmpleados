@@ -7,7 +7,7 @@
 <br />
 <p align="center">
 
-  <h2 align="center">Sistema de Gestion de Empleados/h2>
+  <h2 align="center">Sistema de Gestion de Empleados</h2>
 
   <p align="center">
 	El proyecto consiste en implementar un sistema que permita gestionar y visualizar el horario de los empleados
@@ -47,13 +47,13 @@
 
 Backend:
 
-* [Python3](Python3)
-* [Django](Django)
-* [DjangoRestFramework] (DjangoRestFramework)
+* Python3
+* Django
+* DjangoRestFramework
 
 Frontend
 
-* [Angular] (Angular)
+* Angular
 
 ## Comenzando
 
@@ -92,38 +92,38 @@ Para que funcione el sistema se debe tener arriba ambos servidores
 
 Backend
 
-Actualizar cambios
+### Actualizar cambios
 python manage.py makemigrations
 
-Migrar Cambios
+### Migrar Cambios
 python manage.py migrate
 
-Subir servidor
+### Subir servidor
 python manage.py runserver
 
 Frontend
 
-## Development server
+### Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+### Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+### Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-## Running unit tests
+### Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+### Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
+### Further help
 
 To get more help on the Angular 6 CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
