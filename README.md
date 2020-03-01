@@ -130,14 +130,14 @@ To get more help on the Angular 6 CLI use `ng help` or go check out the [Angular
 <!-- CONTACT -->
 ## Equipo
 
-Backend
+### Backend
 
-Juan Diego Porras - 12-10566 - 12-10566@usb.ve
-Kevin Chacon - 13-10268 - 13-10268@usb.ve
-Marco Benitez - 13-10137 - 13-10137@usb.ve
+Juan Diego Porras - 12-10566 - 12-10566@usb.ve <br>
+Kevin Chacon - 13-10268 - 13-10268@usb.ve <br>
+Marco Benitez - 13-10137 - 13-10137@usb.ve <br>
 
-Frontend
+### Frontend
 
-Luis Carlos Marval - 12-10620 - 12-10620@usb.ve 
-Albert Diaz - 11-10278 - 11-10278@usb.ve
-Victoria Torres - 12-11468 - 12-11468@usb.ve
+Luis Carlos Marval - 12-10620 - 12-10620@usb.ve  <br>
+Albert Diaz - 11-10278 - 11-10278@usb.ve <br>
+Victoria Torres - 12-11468 - 12-11468@usb.ve <br>
