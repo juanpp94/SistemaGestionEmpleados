@@ -93,13 +93,13 @@ Para que funcione el sistema se debe tener arriba ambos servidores
 ### Backend
 
 #### Actualizar cambios
-python manage.py makemigrations
+`python manage.py makemigrations`
 
 #### Migrar Cambios
-python manage.py migrate
+`python manage.py migrate`
 
 #### Subir servidor
-python manage.py runserver
+`python manage.py runserver`
 
 ### Frontend
 
