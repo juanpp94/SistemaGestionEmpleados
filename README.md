@@ -32,7 +32,7 @@
 <!-- Acerca del Proyecto -->
 ## Acerca del Proyecto
 
-  Proyecto del Curso CI-3725 para el trimestre Enero-Marzo 2020
+  Proyecto del Curso CI-3715 para el trimestre Enero-Marzo 2020
 
   Función: Visualizar horas de trabajo de empleados, otorgar vacaciones, entre otros.
 
