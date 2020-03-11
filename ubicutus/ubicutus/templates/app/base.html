@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <title>Ubicutus</title>
+  <body>
+    {% if user.is_authenticated %}
+      <li>Perfil</li>
+    {% else %}
+      <li><a href="{% url 'app:registro' %}">Registro</a></li>    
+    {% endif %} 
+    {% block body_block %}
+    {% endblock %}
+  </body>
+</html>
