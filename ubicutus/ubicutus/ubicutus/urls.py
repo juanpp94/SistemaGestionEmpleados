@@ -7,4 +7,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$',views.index,name='index'),
     url(r'^app/',include('app.urls')),
+    url(r'^salir/$', views.salir, name='salir'),
 ]
