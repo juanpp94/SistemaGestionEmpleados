@@ -53,7 +53,6 @@
 
 #### Frontend
 
-* Angular
 
 ## Comenzando
 
@@ -65,22 +64,9 @@ Python 3 debe estar instalado. <br>
 Pipenv debe estar instalado. <br>
 
 ### Instalacion
- 
-#### Backend
 
 Los requisitos del proyecto se encuentran en requirements.txt
 para instalar todas las dependencias correr
-
-
-
-#### Frontend
-
-Los requisitos se encuentran en package.json
-para instalarlos correr
-
-```sh
-npm install
-```
 
 <!-- USAGE EXAMPLES -->
 ## Como se Usa
@@ -89,9 +75,8 @@ npm install
 `pipenv shell`
 
 #### Instalar dependencias
-```sh
-pip install -r requirements.txt
-```
+`pip install -r requirements.txt`
+
 #### Actualizar cambios
 `python manage.py makemigrations`
 
