@@ -44,3 +44,7 @@ def ingreso_usuario(request):
             return HttpResponse("Usuario o contraseña erradas")
     else:
         return render(request, 'app/login.html', {})
+
+def salir(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('index'))
