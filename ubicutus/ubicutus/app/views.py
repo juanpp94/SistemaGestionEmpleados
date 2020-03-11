@@ -7,8 +7,6 @@ from django.urls import reverse
 def index(request):
     return render(request,'app/index.html')
 
-
-
 def registro(request):
     estado_registro = False
     if request.method == 'POST':
@@ -33,3 +31,16 @@ def registro(request):
                           {'formu_usuario':formu_usuario,
                            'formu_perfil':formu_perfil,
                            'estado_registro':estado_registro})
+
+def ingreso_usuario(request):
+    if request.method == 'POST':
+        usuario = request.POST.get('usuario')
+        contraseña = request.POST.get('contraseña')
+        token = authenticate(username=usuario, password=contraseña)
+        if token:
+            login(request,token)
+            return HttpResponseRedirect(reverse('index'))
+        else:
+            return HttpResponse("Usuario o contraseña erradas")
+    else:
+        return render(request, 'app/login.html', {})
