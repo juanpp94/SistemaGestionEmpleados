@@ -20,7 +20,7 @@
 ## Tabla de Contenidos
 
 * [Acerca del Proyecto](#acerca-del-proyecto)
-  * [Implementado Con](#implementado-con)
+  * [Implementado con](#implementado-con)
 * [Comenzando](#comenzando)
   * [Prerequisitos](#prerequisitos)
   * [Instalacion](#instalacion)
@@ -49,7 +49,7 @@
 
 * Python3
 * Django
-* DjangoRestFramework
+* Pillow
 
 #### Frontend
 
@@ -62,8 +62,7 @@
 ### Prerequisitos
 
 Python 3 debe estar instalado. <br>
-Node.js debe estar instalado <br>
-Angular debe estar instalado <br>
+Pipenv debe estar instalado. <br>
 
 ### Instalacion
  
@@ -72,9 +71,7 @@ Angular debe estar instalado <br>
 Los requisitos del proyecto se encuentran en requirements.txt
 para instalar todas las dependencias correr
 
-```sh
-pip install -r requirements.txt
-```
+
 
 #### Frontend
 
@@ -88,10 +85,13 @@ npm install
 <!-- USAGE EXAMPLES -->
 ## Como se Usa
 
-Para que funcione el sistema se debe tener arriba ambos servidores
+#### Crear un ambiente de desarrollo python
+`pipenv shell`
 
-### Backend
-
+#### Instalar dependencias
+```sh
+pip install -r requirements.txt
+```
 #### Actualizar cambios
 `python manage.py makemigrations`
 
