@@ -1,10 +1,8 @@
 from django.shortcuts import render
-from app.forms import Formulario_Usuario,Formulario_Datos_Perfil, Formulario_Tarea
-from app.models import Tarea, User
+from app.forms import Formulario_Usuario,Formulario_Datos_Perfil
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
-from datetime import datetime, timedelta
 
 def index(request):
     return render(request,'app/index.html')
@@ -49,32 +47,4 @@ def ingreso_usuario(request):
 
 def salir(request):
     logout(request)
-    return HttpResponseRedirect(reverse('index'))
-
-def agregar_tarea(request):
-    iniciada = False
-    tarea = 0 
-    if request.method == 'POST':
-        formu_tarea = Formulario_Tarea(data=request.POST)
-        if formu_tarea.is_valid():
-            tarea = formu_tarea.save()
-            iniciada = True
-        else:
-            print(formu_tarea.errors)
-    else:
-        formu_tarea = Formulario_Tarea()
-    return render(request,'app/tarea.html',
-                          {'formu_tarea':formu_tarea,
-                            'estado_tarea':iniciada,
-                            'tarea': tarea})
-
-def tiempo_tarea(request):
-    tarea = Tarea.objects.all().last()
-    current_user = request.user ##Borrar
-    print(current_user) ##Borrar
-    tarea.save() #Tiempo de finalizacion
-    for x in Tarea.objects.all(): ## BORRAR                          
-                                  ##USAR ESTO PARA  LO DE MOSTRAR TODAS LAS TAREAS Y TIEMPO
-        print(x.nombre_tarea)
-    print(str((tarea.tiempo_fin - tarea.tiempo_inicio).total_seconds()) + " segundos") #Borrar esto es de prueba
     return HttpResponseRedirect(reverse('index'))
