@@ -1,0 +1,9 @@
+{% extends "app/base.html" %}
+{% block body_block %}
+{% if user.is_authenticated %}
+	<h1>Bienvenido al sistema de gestion de recursos de Ubicutus {{user.username }}</h1>   
+{% else %}
+    <h1>Bienvenido al sistema  de gestion de recursos de Ubicutus </h1>
+    <h2>Para utilizar el sitio registrate o ingresa a tu cuenta</h2>
+{% endif %}
+{% endblock %}
