@@ -1,0 +1,7 @@
+{% extends 'app/base.html' %}
+{% block content %}
+<h1>{{tarea.nombre_tarea}} en proceso</h1> 
+	<form action="{% url 'tarea:tiempo' tarea.id %}">
+	  <button type="submit">Finalizar tarea</button>
+	</form> 
+{% endblock%}	
