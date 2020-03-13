@@ -50,9 +50,11 @@
 * Python3
 * Django
 * Pillow
+* Postgresql
 
 #### Frontend
 
+*Bootstrap
 
 ## Comenzando
 
@@ -62,6 +64,7 @@
 
 Python 3 debe estar instalado. <br>
 Pipenv debe estar instalado. <br>
+Postgresql debe estar instalado. <br>
 
 ### Instalacion
 
@@ -76,6 +79,15 @@ para instalar todas las dependencias correr
 
 #### Instalar dependencias
 `pip install -r requirements.txt`
+
+#### Crear base de datos ubic en Postgresql
+`En psql CREATE DATABASE ubic;`
+
+#### Verficar puerto de postgres 
+`Abrir ...\PostgreSQL\12\data\postgresql.conf en bloc de notas y verificar que port = 5432`
+
+#### Cambiar usuario y contraseña en settings.py
+`Abrir \ubicutus\settings.py y en las lineas 64 y 65 colocar usuario y contraseña validas correspondientes a su usuario en postgresql`
 
 #### Actualizar cambios
 `python manage.py makemigrations`
