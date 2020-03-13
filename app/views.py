@@ -10,6 +10,9 @@ def index(request):
 def index1(request):
     return render(request,'app/index1.html')
 
+def dashboard(request):
+    return render(request,'app/dashboard.html')
+
 def registro(request):
     estado_registro = False
     if request.method == 'POST':

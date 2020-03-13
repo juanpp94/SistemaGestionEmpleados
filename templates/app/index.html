@@ -1,10 +1,119 @@
-
 {% extends 'app/index1.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
 {% block body_block %}
-{% if user.is_authenticated %}
-	<h1>Bienvenido al sistema de gestion de recursos de Ubicutus {{user.username }}</h1>   
-{% else %}
-    <h1>Bienvenido al sistema  de gestion de recursos de Ubicutus </h1>
-    <h2>Para utilizar el sitio registrate o ingresa a tu cuenta</h2>
-{% endif %}
-{% endblock %}
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h2 mb-0 text-gray-800">¡Bienvenido al sistema de gestión de personal de Ubicutus, {{user.username }}!</h1>
+          </div>
+
+          <!-- Content Row -->
+          <br><br><br>
+          <div class="row d-flex justify-content-center">
+            <div class="col-md-6 col-lg-5">
+              <div class="overview-item overview-item--c3">
+                  <div class="overview__inner">
+                      <div class="overview-box clearfix">
+                          <div class="icon">
+                              <i class="fas fa-clipboard-list fa-2x"></i>
+                          </div>
+                          <div class="text">
+                              <h2>Tareas</h2>
+                              <a href="{% url 'tarea:listar_tareas' %}">
+                                <span>Vamos!</span>
+                              </a>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-5">
+                <div class="overview-item overview-item--c4 ">
+                    <div class="overview__inner">
+                        <div class="overview-box clearfix">
+                            <div class="icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="text">
+                                <h2>Horas</h2>
+                                <a href="{% url 'tarea:listar_tareas' %}">
+                                  <span>Vamos!</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+          </div>
+
+          <div class="row d-flex justify-content-center"">
+              <div class="col-md- col-lg-5">
+                <div class="overview-item overview-item--c2">
+                    <div class="overview__inner">
+                        <div class="overview-box clearfix">
+                            <div class="icon">
+                                <i class="fa fa-file-text"></i>
+                            </div>
+                            <div class="text">
+                                <h2>Reportes</h2>
+                                <a href="#!">
+                                  <span>Vamos!</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+
+                <div class="col-md-6 col-lg-5">
+                  <div class="overview-item overview-item--c1">
+                      <div class="overview__inner">
+                          <div class="overview-box clearfix">
+                              <div class="icon">
+                                  <i class="far fa-comment"></i>
+                              </div>
+                              <div class="text">
+                                  <h2>Solicitudes</h2>
+                                  <a href="#!">
+                                    <span>Vamos!</span>
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+          </div>
+        </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+  {% endblock %}
+</body>
+
+</html>

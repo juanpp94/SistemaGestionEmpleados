@@ -4,4 +4,5 @@ app_name = 'app'
 urlpatterns=[
     url(r'^registro/$',views.registro,name='registro'),
     url(r'^ingreso/$',views.ingreso_usuario,name='ingreso'),
+    url(r'^index/$',views.index,name='index'),
 ]
