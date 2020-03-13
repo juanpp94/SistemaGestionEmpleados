@@ -11,4 +11,4 @@ class Formulario_Usuario(forms.ModelForm):
 class Formulario_Datos_Perfil(forms.ModelForm):
 	class Meta():
 		model = InformacionUsuario
-		fields = ('nombre','apellido','foto_de_perfil')
+		fields = ('cargo','nombre','apellido','foto_de_perfil')
