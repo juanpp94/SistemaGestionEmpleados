@@ -81,7 +81,7 @@ para instalar todas las dependencias correr
 `pip install -r requirements.txt`
 
 #### Crear base de datos ubic en Postgresql
-`CREATE DATABASE ubic;`
+`En psql CREATE DATABASE ubic;`
 
 #### Verficar puerto de postgres 
 `Abrir ...\PostgreSQL\12\data\postgresql.conf en bloc de notas y verificar que port = 5432`
