@@ -50,4 +50,4 @@ def ingreso_usuario(request):
 
 def salir(request):
     logout(request)
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(reverse('ingreso'))

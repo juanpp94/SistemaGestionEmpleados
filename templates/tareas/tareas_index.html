@@ -1,4 +1,4 @@
-{% extends 'app/base.html' %}
+{% extends 'app/index1.html' %}
 {% block content %}
 <h1>{{tarea.nombre_tarea}} en proceso</h1> 
 	<form action="{% url 'tarea:tiempo' tarea.id %}">
