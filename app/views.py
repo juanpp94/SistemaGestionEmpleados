@@ -7,6 +7,9 @@ from django.urls import reverse
 def index(request):
     return render(request,'app/index.html')
 
+def index1(request):
+    return render(request,'app/index1.html')
+
 def registro(request):
     estado_registro = False
     if request.method == 'POST':
