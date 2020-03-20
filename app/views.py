@@ -3,15 +3,13 @@ from app.forms import Formulario_Usuario,Formulario_Datos_Perfil
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
+from app.models import InformacionUsuario
 
 def index(request):
-    return render(request,'app/index.html')
-
-def index1(request):
-    return render(request,'app/index1.html')
-
-def dashboard(request):
-    return render(request,'app/dashboard.html')
+    user= request.user.id
+    perfil = InformacionUsuario.objects.get(user_id=user)
+    contexto = {'perfil' : perfil}
+    return render(request,'app/index.html', contexto)
 
 def registro(request):
     estado_registro = False
