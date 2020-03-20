@@ -16,7 +16,19 @@ class Formulario_Usuario(forms.ModelForm):
             raise forms.ValidationError("No es un correo @ubicutus.com")
         return email
 
+Roles = (
+	("Estudiante","Estudiante"),
+	("Trainee","Trainee"),
+	("Junior","Junior"),
+	("Semi-junior","Semi-junior"),
+	("Senior","Senior"),
+)
+
 class Formulario_Datos_Perfil(forms.ModelForm):
-	class Meta():
-		model = InformacionUsuario
-		fields = ('cargo','nombre','apellido','foto_de_perfil')
+    cargo = forms.ChoiceField(choices=Roles, widget=forms.Select(attrs = { 'class': 'form-control'} ))
+    nombre = forms.CharField(widget=forms.TextInput(attrs = { 'class': 'form-control'} ))
+    apellido = forms.CharField(widget=forms.TextInput(attrs = { 'class': 'form-control'} ))
+    foto_de_perfil = forms.ImageField(required=False, widget=forms.FileInput(attrs = { 'class': 'form-control-file'}))
+    class Meta():
+        model = InformacionUsuario
+        fields = ('cargo','nombre','apellido','foto_de_perfil')
