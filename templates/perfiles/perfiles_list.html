@@ -1,5 +1,5 @@
 
-{% extends 'app/index1.html' %}
+{% extends 'app/base.html' %}
 {% block content %}
 
 <table class="table table-bordered">
@@ -17,7 +17,10 @@
 		<tr>
 			<td>{{ perfil.nombre }}</td>
 			<td>{{ perfil.apellido }}</td>
-			<td>{{ perfil.foto }}</td>
+			<td>{{ perfil.foto_de_perfil }}
+				<img src="{{ perfil.foto_de_perfil }}">
+			</td>
+			
 			
 			<td>
 				<a href="{% url 'perfil:perfil_edit' perfil.id %}" class="btn btn-primary">Editar</a>
