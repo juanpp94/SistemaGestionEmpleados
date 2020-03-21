@@ -7,6 +7,7 @@
 		<tr>
 			<td>Nombre Tarea</td>
 			<td>Tiempo</td>
+			<th scope="col">Status</th>
 			<td>Accion</td>
 			
 			
@@ -20,30 +21,27 @@
 			<td>{{ tarea.nombre_tarea }}</td>
 			<td>{{ tarea.tiempo_total_formato }}</td>
 			{% if tarea.status == 'activa' %}
+				<td><span class="badge badge-secondary">Por Terminar</span></td>
 				<td><a href="{% url 'tarea:iniciar' tarea.id %}">Reanudar</a></td>
 				<td><a href="{% url 'tarea:finalizar' tarea.id %}">Finalizar</a></td>
 			{% else %}
-			<td style="color: darkblue;">Finalizada</a></td>
+			<!--<td style="color: darkblue;">Finalizada</a></td>-->
+			<td class="project-state">
+				<span class="badge badge-success">Finalizada</span>
+			</td>
+			<td></td>
 			{% endif %}		
 					
 		</tr>
 		{% endfor %}
 		{% else %}
 			<h1>No hay tareas disponibles</h1>
-		{% endif %}	
-		<tr>
-			<td>
-		<form action="{% url 'tarea:agregar_tarea' %}">
-			<button type="submit">Agregar tarea</button>
-		</form> 
-			</td>
-		</tr>	
+		{% endif %}		
        
 	</tbody>
 	
-	
-	
-
 </table> 
+<a href="{% url 'tarea:agregar_tarea' %}" class="btn btn-secondary" role="button" aria-pressed="true">Agregar Tarea</a>
+
 
 {% endblock%}
