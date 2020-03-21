@@ -69,14 +69,14 @@
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
+      <li class="nav-item {% if request.resolver_match.url_name == "index" %}active{% endif %}">
         <a class="nav-link" href="{% url 'index' %}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
 
       <!-- Nav Item - Tareas -->
-      <li class="nav-item active">
+      <li class="nav-item {% if "tarea" in request.resolver_match.view_name %}active{% endif %}">
         <a class="nav-link" href="{% url 'tarea:listar_tareas' %}">
         <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Tareas</span></a>
