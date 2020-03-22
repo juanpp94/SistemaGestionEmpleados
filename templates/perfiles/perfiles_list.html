@@ -2,32 +2,33 @@
 {% extends 'app/base.html' %}
 {% block content %}
 
-<table class="table table-bordered">
-	<thead>
-		<tr>
-			<td>Nombre</td>
-			<td>Apellido</td>
-			<td>Foto</td>
-			<td></td>
-		</tr>
-		
-	</thead>
-	<tbody>
-       
-		<tr>
-			<td>{{ perfil.nombre }}</td>
-			<td>{{ perfil.apellido }}</td>
-			<td>{{ perfil.foto_de_perfil }}
-				<img src="{{ perfil.foto_de_perfil }}">
-			</td>
-			
-			
-			<td>
-				<a href="{% url 'perfil:perfil_edit' perfil.id %}" class="btn btn-primary">Editar</a>
-			</td>
-        </tr>
-       
-	</tbody>
-</table> 
+<div class="card w-50" style="margin-left: 30px;">
+	<div class="card-header">
+		<h3 class="card-title"> Perfil </h3>
+	</div>
+	{% if perfil.foto_de_perfil  %}
+        <img src="{{ perfil.foto_de_perfil.url }}" width="300px" height="300px">
+    {% else %}
+        <i class="fas fa-user fa-fw mr-2 text-gray-400"></i>
+    {% endif %}
+	<div class="card-body">
+		<div class="row">
+			<h5 class="card-title">Nombre: </h5> 
+			<span style="margin-left: 10px; margin-bottom: 0.75rem;">{{ perfil.nombre }}</span>
+		</div>
+		<div class="row">
+			<h5 class="card-title">Apellido: </h5> 
+			<span style="margin-left: 10px; margin-bottom: 0.75rem;">{{ perfil.apellido }}</span>
+		</div>
+		<div class="row">
+			<h5 class="card-title">Cargo: </h5> 
+			<span style="margin-left: 10px; margin-bottom: 0.75rem;">{{ perfil.cargo }}</span>
+		</div>
+	  <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+	 	<div class="text-right">
+			<a href="{% url 'perfil:perfil_edit' %}" class="btn btn-secondary">Editar</a>
+		</div> 
+	</div>
+</div>
 
 {% endblock%}

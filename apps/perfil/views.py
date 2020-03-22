@@ -13,13 +13,17 @@ def perfil_list(request):
     return render(request,'perfiles/perfiles_list.html',contexto)  
    
 
-def perfil_edit(request, pk):
-    perfil = InformacionUsuario.objects.get(id=pk)
+def perfil_edit(request):
+    user= request.user.id
+    perfil = InformacionUsuario.objects.get(user_id=user)
     if request.method == 'GET':
         form = PerfilForm(instance=perfil)
     else:
         form = PerfilForm(request.POST,instance=perfil)
         if form.is_valid():
-            form.save()
+            new_perfil = form.save(commit=False)
+            if 'foto_de_perfil' in request.FILES:
+                new_perfil.foto_de_perfil = request.FILES['foto_de_perfil']
+            new_perfil.save()
         return redirect('perfil:perfil_list')
     return render(request, 'perfiles/perfiles_edit.html', {'form':form}) 
