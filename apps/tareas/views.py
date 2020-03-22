@@ -21,6 +21,31 @@ def agregar_tarea(request):
         formu_tarea = TareaForm()
     return render(request,'tareas/tareas_form.html',{'formu_tarea':formu_tarea})
 
+def mostrar_tarea(request,pk):
+    tarea = Tarea.objects.get(id=pk)
+    return render(request,'tareas/tareas_info.html',{'tarea':tarea})
+
+def eliminar_tarea(request,pk):
+    tarea = Tarea.objects.get(id=pk)
+    tarea.delete()
+    return redirect('tarea:listar_tareas')
+
+def modificar_tarea(request,pk):
+    tarea = Tarea.objects.get(id=pk)
+    formu_tarea = TareaForm()
+    if request.method == 'POST':
+        formu_tarea = TareaForm(data=request.POST,instance=tarea)
+        if formu_tarea.is_valid():
+            tarea.save()
+            #resultado = listar_tarea(pk)
+            #return resultado
+            return redirect('tarea:listar_tareas')
+        else:
+            print(formu_tarea.errors)
+    else:
+        #formu_tarea = TareaForm()
+        return render(request,'tareas/tareas_edit_form.html',{'formu_tarea':formu_tarea})
+
 def tiempo_tarea(request, pk):
     tarea = Tarea.objects.get(id=pk)
     tarea.tiempo_fin = datetime.now(timezone.utc)
