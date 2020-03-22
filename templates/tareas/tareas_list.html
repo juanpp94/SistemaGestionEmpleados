@@ -2,15 +2,13 @@
 {% extends 'app/base.html' %}
 {% block content %}
 
-<table class="table table-bordered">
+<table class="table table-striped">
 	<thead>
 		<tr>
-			<td>Nombre Tarea</td>
-			<td>Tiempo</td>
+			<th scope="col">Nombre Tarea</th>
+			<th scope="col">Tiempo</th>
 			<th scope="col">Status</th>
-			<td>Accion</td>
-			
-			
+			<th scope="col">Accion</th>	
 		</tr>
 		
 	</thead>
@@ -22,8 +20,12 @@
 			<td>{{ tarea.tiempo_total_formato }}</td>
 			{% if tarea.status == 'activa' %}
 				<td><span class="badge badge-secondary">Por Terminar</span></td>
-				<td><a href="{% url 'tarea:iniciar' tarea.id %}">Reanudar</a></td>
-				<td><a href="{% url 'tarea:finalizar' tarea.id %}">Finalizar</a></td>
+				<td>
+					<a href="{% url 'tarea:iniciar' tarea.id %}" class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true">Reanudar</a>
+				</td>
+				<td>
+					<a href="{% url 'tarea:finalizar' tarea.id %}" class="btn btn-outline-success btn-sm" role="button" aria-pressed="true">Finalizar</a>
+				</td>
 			{% else %}
 			<!--<td style="color: darkblue;">Finalizada</a></td>-->
 			<td class="project-state">
