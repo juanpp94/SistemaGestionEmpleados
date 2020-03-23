@@ -72,19 +72,23 @@
 			<td><i class="fas fa-check"></i></td>
 			{% endif %}
 			<td class="project-actions text-right">
-				<a class="btn btn-primary btn-sm" href="#">
+				<a class="btn btn-primary btn-sm" href="{% url 'tarea:mostrar_tarea' tarea.id %}">
 					<i class="far fa-eye"></i>
 				</a>
-				<a class="btn btn-info btn-sm" href="#">
+				<a class="btn btn-info btn-sm" href="{% url 'tarea:modificar_tarea' tarea.id %}">
 					<i class="fas fa-edit"></i>
 				</a>
-				<a class="btn btn-danger btn-sm" href="#">
+				<a class="btn btn-danger btn-sm" href="{% url 'tarea:eliminar_tarea' tarea.id %}"
+				onClick="return confirm('¿Seguro que quieres borrar a {{tarea.nombre_tarea}}?');">
 					<i class="far fa-trash-alt"></i>
 				</a>
 			</td>	
 					
 		</tr>
 		{% endfor %}
+
+		
+
 		{% else %}
 			<h1>No hay tareas disponibles</h1>
 		{% endif %}		
@@ -94,6 +98,23 @@
 </table>
 </div>
 <a href="{% url 'tarea:agregar_tarea' %}" class="btn btn-secondary" role="button" aria-pressed="true">Agregar Tarea</a>
+
+<div class="pagination">
+	<span class="step-links">
+		{% if tareas.has_previous %}
+			<a href="?page={{ tareas.previous_page_number }}"><i class="fas fa-arrow-left"></i></a>
+		{% endif %}
+
+		{% if tareas.paginator.num_pages %}
+		<span class="current">
+			{{ tareas.number}} de {{ tareas.paginator.num_pages}}
+		</span>
+		{% endif %}
+		{% if tareas.has_next %}
+			<a href="?page={{ tareas.next_page_number }}"><i class="fas fa-arrow-right"></i></a>
+		{% endif %}
+
+	</span>
 </div>
 
 {% endblock%}
