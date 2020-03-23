@@ -1,8 +1,11 @@
 {% extends 'app/base.html' %}
 {% block content %}
-<form enctype="multipart/form-data" method="POST">
-{% csrf_token %}
-{{ formu_tarea.as_p }}
-<button class="btn btn-secondary" style="margin-top: 30px;" type="submit" name="" value="Empezar">Empezar</button>
-</form>
+
+<div class="container">
+    <form enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+    {{ formu_tarea.as_p }}
+    <button class="btn btn-secondary" style="margin-top: 30px;" type="submit" name="" value="Empezar">Empezar</button>
+    </form>
+</div>
 {% endblock%}
