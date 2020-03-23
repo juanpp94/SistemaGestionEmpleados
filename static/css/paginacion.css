@@ -1,13 +1,27 @@
 .pagination {
     margin-bottom: 20px;
-    }
-.step-links{
-position: relative;
-margin-left: auto;
-margin-right: auto;
+}
+.step-links {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .step-links .current {
-margin-left: 5px;
-margin-right: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.fas.fa-search {
+    position: absolute;
+    top: 12px;
+    right: 26px;
+    cursor: pointer;
+
+}
+
+.search-div {
+    padding: 0px;
+    margin-top: 15px;
+    display: inline-block;
 }
