@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from apps.tareas.forms import TareaForm
 from apps.tareas.models import Tarea
 from datetime import datetime,timezone
+from django.core.paginator import Paginator
 
 # Create your views here.
 def agregar_tarea(request):
@@ -63,7 +64,10 @@ def tiempo_tarea(request, pk):
 
 def listar_tarea(request):
     user= request.user.id  
-    tareas = Tarea.objects.filter(usuario_id=user)
+    lista_tareas = Tarea.objects.filter(usuario_id=user)
+    paginator = Paginator(lista_tareas,3)
+    pagina = request.GET.get('page')
+    tareas = paginator.get_page(pagina)
     contexto = {'tareas' : tareas}
     return render(request,'tareas/tareas_list.html',contexto)
 
