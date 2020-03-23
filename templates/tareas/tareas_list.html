@@ -36,13 +36,13 @@
 		</div>
 	</div>
 
-<div class="col-2 add-div">
+<div class="container">
+<div class="col-3">
 	<form method="GET" id="search-form">
-		<input class="form-control" type="text" id="search" name="search" placeholder="Ingrese el nombre de la tarea que desea buscar" value="{{ request.GET.search }}"><i class="fas fa-search"></i>
-		<i class="fas fa-search" id="search-btn"></i>
+		<input class="form-control" type="text" id="search" name="search" placeholder="Nombre Tarea..." value="{{ request.GET.search }}"><i class="fas fa-search"></i></input>
 	</form>
 </div>
-<div class="container">
+<br>
 <table class="table table-striped">
 	<thead>
 		<tr>
@@ -103,7 +103,9 @@
 	
 </table>
 </div>
+
 <a href="{% url 'tarea:agregar_tarea' %}" class="btn btn-secondary" role="button" aria-pressed="true">Agregar Tarea</a>
+</div>
 
 <div class="pagination">
 	<span class="step-links">
@@ -119,10 +121,7 @@
 		{% if tareas.has_next %}
 		<li class="page-item"><a class="page-link" href="?page={{ tareas.next_page_number }}"><i class="fas fa-arrow-right"></i></a></li>
 		{% endif %}
-
 	</span>
 </div>
-
-
 
 {% endblock%}
