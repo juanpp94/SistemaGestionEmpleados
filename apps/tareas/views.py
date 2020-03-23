@@ -65,11 +65,16 @@ def tiempo_tarea(request, pk):
 def listar_tarea(request):
     user= request.user.id  
     lista_tareas = Tarea.objects.filter(usuario_id=user)
-    paginator = Paginator(lista_tareas,5)
-    pagina = request.GET.get('page')
-    tareas = paginator.get_page(pagina)
-    contexto = {'tareas' : tareas}
-    return render(request,'tareas/tareas_list.html',contexto)
+    search = request.GET.get('search')
+    if search:
+        tareas = Tarea.objects.filter(nombre_tarea__icontains=search,usuario=request.user)
+    else:
+        paginator = Paginator(lista_tareas,5)
+        pagina = request.GET.get('page')
+        tareas = paginator.get_page(pagina)
+        #contexto = {'tareas' : tareas}
+
+    return render(request,'tareas/tareas_list.html',{'tareas' : tareas})
 
 def iniciar_tarea(request, pk):
     tarea = Tarea.objects.get(id=pk)
