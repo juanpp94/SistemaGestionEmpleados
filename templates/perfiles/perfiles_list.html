@@ -2,27 +2,38 @@
 {% load static %}
 {% block content %}
 
-<div class="card w-50" style="margin-left: 30px;">
+<div class="offset-3 col-10 list-div">
+<div class="card bg-gradient-light w-50" style="margin-left: 30px;">
 	<div class="card-header">
-		<h3 class="card-title"> Perfil </h3>
+		<h3 class="card-title"> Tu perfil </h3>
 	</div>
-	{% if perfil.foto_de_perfil  %}
-        <img src="{{ perfil.foto_de_perfil.url }}" width="300px" height="300px">
-    {% else %}
-		<img src="{% static '/img/ubicutus-icon.png' %}" width="200px" height="200px">
-    {% endif %}
+
 	<div class="card-body">
-		<div class="row">
-			<h5 class="card-title">Nombre: </h5> 
-			<span style="margin-left: 10px; margin-bottom: 0.75rem;">{{ perfil.nombre }}</span>
+		{% if perfil.foto_de_perfil  %}
+		<div class="offset-1 col-10 list-div">
+			<img src="{{ perfil.foto_de_perfil.url }}" width="300px" height="300px">
 		</div>
-		<div class="row">
-			<h5 class="card-title">Apellido: </h5> 
-			<span style="margin-left: 10px; margin-bottom: 0.75rem;">{{ perfil.apellido }}</span>
+		{% else %}
+			<img src="{% static '/img/ubicutus-icon.png' %}" width="200px" height="200px">
+		{% endif %}
+		<br>
+		<div class="offset-2 col-10 list-div">
+			<div class="row">
+				<h5 class="card-title">Nombre: </h5> 
+				<span style="margin-left: 10px; margin-bottom: 0.75rem;">{{ perfil.nombre }}</span>
+			</div>
 		</div>
-		<div class="row">
-			<h5 class="card-title">Cargo: </h5> 
-			<span style="margin-left: 10px; margin-bottom: 0.75rem;">{{ perfil.cargo }}</span>
+		<div class="offset-2 col-10 list-div">
+			<div class="row">
+				<h5 class="card-title">Apellido: </h5> 
+				<span style="margin-left: 10px; margin-bottom: 0.75rem;">{{ perfil.apellido }}</span>
+			</div>
+		</div>
+		<div class="offset-2 col-10 list-div">
+			<div class="row">
+				<h5 class="card-title">Cargo: </h5> 
+				<span style="margin-left: 10px; margin-bottom: 0.75rem;">{{ perfil.cargo }}</span>
+			</div>
 		</div>
 	  <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
 	 	<div class="text-right">
@@ -30,5 +41,5 @@
 		</div> 
 	</div>
 </div>
-
+</div>
 {% endblock%}
