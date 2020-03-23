@@ -65,7 +65,7 @@ def tiempo_tarea(request, pk):
 def listar_tarea(request):
     user= request.user.id  
     lista_tareas = Tarea.objects.filter(usuario_id=user)
-    paginator = Paginator(lista_tareas,3)
+    paginator = Paginator(lista_tareas,10)
     pagina = request.GET.get('page')
     tareas = paginator.get_page(pagina)
     contexto = {'tareas' : tareas}
