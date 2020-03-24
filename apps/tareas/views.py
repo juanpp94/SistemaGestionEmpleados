@@ -91,7 +91,6 @@ def finalizar_tarea(request, pk):
 def horas(request):
     user= request.user.id  
     hoy = datetime.now(timezone.utc).date()
-    lista_tareas = Tarea.objects.none()  
     lista_tareas_dia = Tarea.objects.filter(usuario_id=user, tiempo_fin__date= hoy)
     lista_tareas_sem = Tarea.objects.filter(usuario_id=user, tiempo_fin__date__range = (hoy - timedelta(days = 7), hoy))
     lista_tareas_mes = Tarea.objects.filter(usuario_id=user, tiempo_fin__year = hoy.year, tiempo_fin__month= hoy.month)
