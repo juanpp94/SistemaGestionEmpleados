@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from apps.tareas.forms import TareaForm
 from apps.tareas.models import Tarea
-from datetime import datetime,timezone
+from datetime import datetime,timezone, date, timedelta
 from django.core.paginator import Paginator
 
 # Create your views here.
@@ -87,3 +87,21 @@ def finalizar_tarea(request, pk):
     tarea.status = "finalizada"
     tarea.save()
     return redirect('tarea:listar_tareas')    
+
+def horas(request):
+    user= request.user.id  
+    hoy = datetime.now(timezone.utc).date()
+    lista_tareas = Tarea.objects.none()  
+    lista_tareas_dia = Tarea.objects.filter(usuario_id=user, tiempo_fin__date= hoy)
+    lista_tareas_sem = Tarea.objects.filter(usuario_id=user, tiempo_fin__date__range = (hoy - timedelta(days = 7), hoy))
+    lista_tareas_mes = Tarea.objects.filter(usuario_id=user, tiempo_fin__year = hoy.year, tiempo_fin__month= hoy.month)
+    paginator = Paginator(lista_tareas_dia,5)
+    pagina = request.GET.get('page')
+    tareas_dia = paginator.get_page(pagina)
+    paginator = Paginator(lista_tareas_sem,5)
+    pagina = request.GET.get('page')
+    tareas_sem = paginator.get_page(pagina)
+    paginator = Paginator(lista_tareas_mes,5)
+    pagina = request.GET.get('page')
+    tareas_mes = paginator.get_page(pagina)
+    return render(request,'tareas/tareas_horas.html',{'tareas_dia' : tareas_dia, 'tareas_sem' : tareas_sem, 'tareas_mes' : tareas_mes})

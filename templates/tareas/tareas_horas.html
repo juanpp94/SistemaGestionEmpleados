@@ -1,0 +1,297 @@
+
+{% extends 'app/base.html' %}
+{% block content %}
+<div class="row d-flex justify-content-center">
+	<div class="col-md col-lg-4">
+	  <div class="overview-item overview-item--c4">
+		  <div class="overview__inner">
+			  <div class="overview-box clearfix">
+				  <div class="icon">
+					<i class="fas fa-calendar-check"></i>
+				  </div>
+				  <div class="text">
+					  <span>Tareas</span>
+					  <span>del dia</span>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+<div class="container">
+
+
+<br>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">Nombre Tarea</th>
+			<th scope="col">Tiempo</th>
+			<th scope="col">Status</th>
+			<th scope="col"></th>
+			<th scope="col"></th>
+			<th scope="col"></th>	
+		</tr>
+		
+	</thead>
+	<tbody>
+		{% if tareas_dia %}
+		{% for tarea in tareas_dia %}
+		<tr>
+			<td>{{ tarea.nombre_tarea }}</td>
+			<td>{{ tarea.tiempo_total_formato }}</td>
+			{% if tarea.status == 'activa' %}
+				<td><span class="badge badge-secondary">Por Terminar</span></td>
+				<td>
+					<a href="{% url 'tarea:iniciar' tarea.id %}" class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true">Reanudar</a>
+				</td>
+				<td>
+					<a href="{% url 'tarea:finalizar' tarea.id %}" class="btn btn-outline-success btn-sm" role="button" aria-pressed="true">Finalizar</a>
+				</td>
+			{% else %}
+			<!--<td style="color: darkblue;">Finalizada</a></td>-->
+			<td class="project-state">
+				<span class="badge badge-success">Finalizada</span>
+			</td>
+			<td></td>
+			<td><i class="fas fa-check"></i></td>
+			{% endif %}
+			<td class="project-actions text-right">
+				<a class="btn btn-primary btn-sm" href="{% url 'tarea:mostrar_tarea' tarea.id %}">
+					<i class="far fa-eye"></i>
+				</a>
+				<a class="btn btn-info btn-sm" href="{% url 'tarea:modificar_tarea' tarea.id %}">
+					<i class="fas fa-edit"></i>
+				</a>
+				<a class="btn btn-danger btn-sm" href="{% url 'tarea:eliminar_tarea' tarea.id %}"
+				onClick="return confirm('¿Seguro que quieres borrar a {{tarea.nombre_tarea}}?');">
+					<i class="far fa-trash-alt"></i>
+				</a>
+			</td>	
+					
+		</tr>
+		{% endfor %}
+
+		
+
+		{% else %}
+			<h1>No hay tareas disponibles</h1>
+		{% endif %}		
+       
+	</tbody>
+	
+</table>
+</div>
+
+<div class="pagination">
+	<span class="step-links">
+		{% if tareas_dia.has_previous %}
+		<li class="page-item"><a class="page-link" href="?page={{ tareas.previous_page_number }}"><i class="fas fa-arrow-left"></i></a></li>
+		{% endif %}
+
+		{% if tareas_dia.paginator.num_pages %}
+		<span class="current">
+			{{ tareas.number}} de {{ tareas.paginator.num_pages}}
+		</span>
+		{% endif %}
+		{% if tareas_dia.has_next %}
+		<li class="page-item"><a class="page-link" href="?page={{ tareas.next_page_number }}"><i class="fas fa-arrow-right"></i></a></li>
+		{% endif %}
+	</span>
+</div>
+
+<div class="row d-flex justify-content-center">
+	<div class="col-md col-lg-4">
+	  <div class="overview-item overview-item--c4">
+		  <div class="overview__inner">
+			  <div class="overview-box clearfix">
+				  <div class="icon">
+					<i class="fas fa-calendar-check"></i>
+				  </div>
+				  <div class="text">
+					  <span>Tareas</span>
+					  <span>de la semana</span>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+<div class="container">
+
+
+<br>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">Nombre Tarea</th>
+			<th scope="col">Tiempo</th>
+			<th scope="col">Status</th>
+			<th scope="col"></th>
+			<th scope="col"></th>
+			<th scope="col"></th>	
+		</tr>
+		
+	</thead>
+	<tbody>
+		{% if tareas_sem %}
+		{% for tarea in tareas_sem %}
+		<tr>
+			<td>{{ tarea.nombre_tarea }}</td>
+			<td>{{ tarea.tiempo_total_formato }}</td>
+			{% if tarea.status == 'activa' %}
+				<td><span class="badge badge-secondary">Por Terminar</span></td>
+				<td>
+					<a href="{% url 'tarea:iniciar' tarea.id %}" class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true">Reanudar</a>
+				</td>
+				<td>
+					<a href="{% url 'tarea:finalizar' tarea.id %}" class="btn btn-outline-success btn-sm" role="button" aria-pressed="true">Finalizar</a>
+				</td>
+			{% else %}
+			<!--<td style="color: darkblue;">Finalizada</a></td>-->
+			<td class="project-state">
+				<span class="badge badge-success">Finalizada</span>
+			</td>
+			<td></td>
+			<td><i class="fas fa-check"></i></td>
+			{% endif %}
+			<td class="project-actions text-right">
+				<a class="btn btn-primary btn-sm" href="{% url 'tarea:mostrar_tarea' tarea.id %}">
+					<i class="far fa-eye"></i>
+				</a>
+				<a class="btn btn-info btn-sm" href="{% url 'tarea:modificar_tarea' tarea.id %}">
+					<i class="fas fa-edit"></i>
+				</a>
+				<a class="btn btn-danger btn-sm" href="{% url 'tarea:eliminar_tarea' tarea.id %}"
+				onClick="return confirm('¿Seguro que quieres borrar a {{tarea.nombre_tarea}}?');">
+					<i class="far fa-trash-alt"></i>
+				</a>
+			</td>	
+					
+		</tr>
+		{% endfor %}
+
+		
+
+		{% else %}
+			<h1>No hay tareas disponibles</h1>
+		{% endif %}		
+       
+	</tbody>
+	
+</table>
+</div>
+
+<div class="pagination">
+	<span class="step-links">
+		{% if tareas_sem.has_previous %}
+		<li class="page-item"><a class="page-link" href="?page={{ tareas.previous_page_number }}"><i class="fas fa-arrow-left"></i></a></li>
+		{% endif %}
+
+		{% if tareas_sem.paginator.num_pages %}
+		<span class="current">
+			{{ tareas.number}} de {{ tareas.paginator.num_pages}}
+		</span>
+		{% endif %}
+		{% if tareas_sem.has_next %}
+		<li class="page-item"><a class="page-link" href="?page={{ tareas.next_page_number }}"><i class="fas fa-arrow-right"></i></a></li>
+		{% endif %}
+	</span>
+</div>
+
+<div class="row d-flex justify-content-center">
+	<div class="col-md col-lg-4">
+	  <div class="overview-item overview-item--c4">
+		  <div class="overview__inner">
+			  <div class="overview-box clearfix">
+				  <div class="icon">
+					<i class="fas fa-calendar-check"></i>
+				  </div>
+				  <div class="text">
+					  <span>Tareas</span>
+					  <span>del mes</span>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+<div class="container">
+
+
+<br>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">Nombre Tarea</th>
+			<th scope="col">Tiempo</th>
+			<th scope="col">Status</th>
+			<th scope="col"></th>
+			<th scope="col"></th>
+			<th scope="col"></th>	
+		</tr>
+		
+	</thead>
+	<tbody>
+		{% if tareas_mes %}
+		{% for tarea in tareas_mes %}
+		<tr>
+			<td>{{ tarea.nombre_tarea }}</td>
+			<td>{{ tarea.tiempo_total_formato }}</td>
+			{% if tarea.status == 'activa' %}
+				<td><span class="badge badge-secondary">Por Terminar</span></td>
+				<td>
+					<a href="{% url 'tarea:iniciar' tarea.id %}" class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true">Reanudar</a>
+				</td>
+				<td>
+					<a href="{% url 'tarea:finalizar' tarea.id %}" class="btn btn-outline-success btn-sm" role="button" aria-pressed="true">Finalizar</a>
+				</td>
+			{% else %}
+			<!--<td style="color: darkblue;">Finalizada</a></td>-->
+			<td class="project-state">
+				<span class="badge badge-success">Finalizada</span>
+			</td>
+			<td></td>
+			<td><i class="fas fa-check"></i></td>
+			{% endif %}
+			<td class="project-actions text-right">
+				<a class="btn btn-primary btn-sm" href="{% url 'tarea:mostrar_tarea' tarea.id %}">
+					<i class="far fa-eye"></i>
+				</a>
+				<a class="btn btn-info btn-sm" href="{% url 'tarea:modificar_tarea' tarea.id %}">
+					<i class="fas fa-edit"></i>
+				</a>
+				<a class="btn btn-danger btn-sm" href="{% url 'tarea:eliminar_tarea' tarea.id %}"
+				onClick="return confirm('¿Seguro que quieres borrar a {{tarea.nombre_tarea}}?');">
+					<i class="far fa-trash-alt"></i>
+				</a>
+			</td>	
+					
+		</tr>
+		{% endfor %}
+
+		
+
+		{% else %}
+			<h1>No hay tareas disponibles</h1>
+		{% endif %}		
+       
+	</tbody>
+	
+</table>
+</div>
+
+<div class="pagination">
+	<span class="step-links">
+		{% if tareas_mes.has_previous %}
+		<li class="page-item"><a class="page-link" href="?page={{ tareas.previous_page_number }}"><i class="fas fa-arrow-left"></i></a></li>
+		{% endif %}
+
+		{% if tareas.paginator.num_pages %}
+		<span class="current">
+			{{ tareas_mes.number}} de {{ tareas.paginator.num_pages}}
+		</span>
+		{% endif %}
+		{% if tareas_mes.has_next %}
+		<li class="page-item"><a class="page-link" href="?page={{ tareas.next_page_number }}"><i class="fas fa-arrow-right"></i></a></li>
+		{% endif %}
+	</span>
+</div>
+{% endblock%}
