@@ -84,13 +84,12 @@
 				<a class="btn btn-info btn-sm" href="{% url 'tarea:modificar_tarea' tarea.id %}">
 					<i class="fas fa-edit"></i>
 				</a>
-				<a class="btn btn-danger btn-sm" href="{% url 'tarea:eliminar_tarea' tarea.id %}"
-				onClick="return confirm('¿Seguro que quieres borrar a {{tarea.nombre_tarea}}?');">
+				<a href="#myModal" class="btn btn-danger btn-sm" data-toggle="modal">
 					<i class="far fa-trash-alt"></i>
 				</a>
-			</td>	
-					
+			</td>			
 		</tr>
+
 		{% endfor %}
 
 		
@@ -123,5 +122,11 @@
 		{% endif %}
 	</span>
 </div>
+
+<!-- Button HTML (to Trigger Modal) -->
+<a href="#myModal" class="btn btn-lg btn-primary" data-toggle="modal">Launch Demo Modal</a>
+
+    
+
 
 {% endblock%}
