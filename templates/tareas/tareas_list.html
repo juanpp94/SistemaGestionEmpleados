@@ -136,21 +136,23 @@
 <a href="{% url 'tarea:agregar_tarea' %}" class="btn btn-secondary" style="margin-top: 30px;" role="button" aria-pressed="true">Agregar Tarea</a>
 </div>
 
-<div class="pagination">
-	<span class="step-links">
-		{% if tareas.has_previous %}
-		<li class="page-item"><a class="page-link" href="?page={{ tareas.previous_page_number }}"><i class="fas fa-arrow-left"></i></a></li>
-		{% endif %}
+<div class="offset-1 col-10 list-div" style="margin-top: 2rem;">
+	<div class="pagination">
+		<span class="step-links">
+			{% if tareas.has_previous %}
+			<li class="page-item"><a class="page-link" href="?page={{ tareas.previous_page_number }}"><i class="fas fa-arrow-left"></i></a></li>
+			{% endif %}
 
-		{% if tareas.paginator.num_pages %}
-		<span class="current">
-			{{ tareas.number}} de {{ tareas.paginator.num_pages}}
+			{% if tareas.paginator.num_pages %}
+			<span class="current">
+				{{ tareas.number}} de {{ tareas.paginator.num_pages}}
+			</span>
+			{% endif %}
+			{% if tareas.has_next %}
+			<li class="page-item"><a class="page-link" href="?page={{ tareas.next_page_number }}"><i class="fas fa-arrow-right"></i></a></li>
+			{% endif %}
 		</span>
-		{% endif %}
-		{% if tareas.has_next %}
-		<li class="page-item"><a class="page-link" href="?page={{ tareas.next_page_number }}"><i class="fas fa-arrow-right"></i></a></li>
-		{% endif %}
-	</span>
+	</div>
 </div>
 
 {% endblock%}
