@@ -1,3 +1,4 @@
+/*Paginacion*/
 .pagination {
     margin-bottom: 20px;
 }
@@ -24,4 +25,16 @@
     padding: 0px;
     margin-top: 15px;
     display: inline-block;
+}
+
+/*Filtro*/
+.filter-div {
+    margin-bottom: 15px;
+    padding: 0;
+}
+    
+#filter {
+    display: inline-block;
+    width: 200px;
+    margin-left: 10px;
 }

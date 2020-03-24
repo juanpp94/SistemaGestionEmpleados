@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'app',
     'apps.perfil',
     'apps.tareas',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -62,7 +63,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'ubic',
         'USER': 'postgres',
-        'PASSWORD': 'zack7zell8',
+        'PASSWORD': 'cututu',
         'HOST': 'localhost',
         'PORT': 5432,
     }

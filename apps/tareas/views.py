@@ -3,6 +3,7 @@ from apps.tareas.forms import TareaForm
 from apps.tareas.models import Tarea
 from datetime import datetime,timezone, date, timedelta
 from django.core.paginator import Paginator
+from apps.tareas.filters import OrderFilter
 
 # Create your views here.
 def agregar_tarea(request):
@@ -65,16 +66,24 @@ def tiempo_tarea(request, pk):
 def listar_tarea(request):
     user= request.user.id  
     lista_tareas = Tarea.objects.filter(usuario_id=user)
+    filter = request.GET.get('status')
+    tareasFinalizadas = Tarea.objects.filter(status="finalizada",usuario=request.user).count()
+    tareasPorHacer = Tarea.objects.filter(status="activa",usuario=request.user).count()
     search = request.GET.get('search')
+    myFilter = OrderFilter(request.GET,queryset=lista_tareas)
+    lista_task = myFilter.qs
     if search:
         tareas = Tarea.objects.filter(nombre_tarea__icontains=search,usuario=request.user)
+    elif filter:
+        filter2 = str(filter)
+        tareas = Tarea.objects.filter(status=filter2)
     else:
         paginator = Paginator(lista_tareas,5)
         pagina = request.GET.get('page')
         tareas = paginator.get_page(pagina)
         #contexto = {'tareas' : tareas}
 
-    return render(request,'tareas/tareas_list.html',{'tareas' : tareas})
+    return render(request,'tareas/tareas_list.html',{'tareas' : tareas,'tareasFinalizadas' : tareasFinalizadas, 'tareasPorHacer' : tareasPorHacer, 'myFilter' : myFilter})
 
 def iniciar_tarea(request, pk):
     tarea = Tarea.objects.get(id=pk)
