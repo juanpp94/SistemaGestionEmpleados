@@ -43,6 +43,7 @@
 	</form>
 </div>
 <br>
+<div class="container">
 <table class="table table-striped">
 	<thead>
 		<tr>
@@ -53,8 +54,11 @@
 			<th scope="col"></th>
 			<th scope="col"></th>	
 		</tr>
+
+
 		
 	</thead>
+	
 	<tbody>
 		{% if tareas %}
 		{% for tarea in tareas %}
@@ -114,12 +118,19 @@
 		
 
 		{% else %}
-			<h1>No hay tareas disponibles</h1>
+		<div class="offset-3 col-12 list-div">
+			<div class="card bg-gradient-light w-50" style="margin-left: 30px;">
+				<div class="card-body">
+					<h1>No hay tareas disponibles</h1>
+				</div>
+			</div>
+		</div>
 		{% endif %}		
        
 	</tbody>
 	
 </table>
+</div>
 </div>
 
 <a href="{% url 'tarea:agregar_tarea' %}" class="btn btn-secondary" style="margin-top: 30px;" role="button" aria-pressed="true">Agregar Tarea</a>
@@ -141,4 +152,5 @@
 		{% endif %}
 	</span>
 </div>
+
 {% endblock%}
