@@ -65,7 +65,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'ubic',
         'USER': 'postgres',
-        'PASSWORD': 'zack7zell8',
+        'PASSWORD': 'cututu',
         'HOST': 'localhost',
         'PORT': 5432,
     }
@@ -105,47 +105,3 @@ MEDIA_URL = '/media/'
 
 LOGIN_URL = '/app/ingreso/'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ubic',
-        'USER': 'postgres',
-        'PASSWORD': 'zack7zell8',
-        'HOST': 'localhost',
-        'PORT': 5432,
-    }
-}
-
-
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
-
-LANGUAGE_CODE = 'es'
-
-TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
-
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-
-MEDIA_ROOT = MEDIA_DIR
-MEDIA_URL = '/media/'
-
-LOGIN_URL = '/app/ingreso/'
