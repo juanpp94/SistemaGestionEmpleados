@@ -1,8 +1,9 @@
-from django.shortcuts import render
-from app.forms import Formulario_Usuario,Formulario_Datos_Perfil
-from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib import messages
 from django.urls import reverse
+from django.contrib.auth import authenticate, login, logout
+from app.forms import Formulario_Usuario,Formulario_Datos_Perfil
 from app.models import InformacionUsuario
 
 def index(request):
@@ -45,7 +46,8 @@ def ingreso_usuario(request):
             login(request,token)
             return HttpResponseRedirect(reverse('index'))
         else:
-            return HttpResponse("Usuario o contraseña erradas")
+            messages.error(request,'usuario o contraseña incorrecto')
+            return render(request, 'app/login.html', {})
     else:
         return render(request, 'app/login.html', {})
 

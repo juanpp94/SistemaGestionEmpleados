@@ -1,0 +1,48 @@
+{% extends 'app/base.html' %}
+{% block content %}
+
+<div class="offset-3 col-10 list-div">
+    <div class="card bg-gradient-light w-50" style="margin-left: 30px;">
+        <div class="card-header">
+            <h3 class="card-title"> Eliminar Incidencia {{incidencia.titulo}} </h3>
+            <p> Esta seguro que desea Descartar esta incidencia </p>
+        </div>
+    
+        <div class="card-body">
+            <div class="row" style="padding: 10px;">
+                <h5 class="col"> Descripcion: </h5>
+                <p class="col">{{ incidencia.descripcion }}</p>
+            </div>
+            <div class="row" style="padding: 10px;">
+                <h5 class="col"> Tipo: </h5>
+                <p class="col">{{ incidencia.tipo }}</p>
+            </div>
+            <div class="row" style="padding: 10px;">
+                <h5 class="col"> Estatus: </h5>
+                <p class="col">{{ incidencia.estatus }}</p>
+            </div>
+            <div class="row" style="padding: 10px;">
+                <h5 class="col"> Fecha: </h5>
+                <p class="col">{{ incidencia.fecha_reportada }}</p>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <a href="{% url 'incidencias:lista' %}" class="btn btn-secondary">Lista</a>
+                </div>
+                <div class="col">
+                    <form enctype="multipart/form-data" method="post">
+                        {% csrf_token %}
+                        <div style="display:none; ">
+                            {{form.as_p}}
+                        </div>
+                        <button class="btn btn-danger" type="submit">Eliminar</button>
+                    </form>
+                </div>
+        </div>
+
+</div>
+
+
+
+{% endblock %}

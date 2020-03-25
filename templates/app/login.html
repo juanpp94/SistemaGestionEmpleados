@@ -1,6 +1,16 @@
 {% extends 'app/auth_base.html' %}
 {% block body_block %}
   <h4>Ingreso</h4>
+  {% for message in messages %}
+
+  <div class="alert alert-warning">
+      <a class="close" href="#" data-dismiss="alert">×</a>
+
+      {{ message }}
+
+  </div>
+  {% endfor %}
+
   <form method="post" action="{% url 'app:ingreso' %}">
     {% csrf_token %}
     <div class="form-group row">

@@ -1,5 +1,11 @@
 import os
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "aesirsistemas@gmail.com"
+EMAIL_HOST_PASSWORD = "963django%"
+EMAIL_PORT = "587"
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 MEDIA_DIR = os.path.join(BASE_DIR,'media')
@@ -24,6 +30,7 @@ INSTALLED_APPS = [
     'apps.tareas',
     'django_filters',
     'crispy_forms',
+    'apps.incidencias'
 ]
 
 MIDDLEWARE = [
@@ -65,7 +72,11 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'ubic',
         'USER': 'postgres',
+<<<<<<< HEAD
         'PASSWORD': 'zack7zell8',
+=======
+        'PASSWORD': 'postgres',
+>>>>>>> a4a93ef480d60d3898f202d7756caf2a39d2de89
         'HOST': 'localhost',
         'PORT': 5432,
     }
