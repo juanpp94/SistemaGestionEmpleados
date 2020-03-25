@@ -1,9 +1,11 @@
 {% extends 'app/base.html' %}
 {% block content %}
+
 <div class="offset-3 col-10 list-div">
     <div class="card bg-gradient-light w-50" style="margin-left: 30px;">
         <div class="card-header">
-            <h3 class="card-title"> Incidencia {{incidencia.titulo}} </h3>
+            <h3 class="card-title"> Eliminar Incidencia {{incidencia.titulo}} </h3>
+            <p> Esta seguro que desea Descartar esta incidencia </p>
         </div>
     
         <div class="card-body">
@@ -23,18 +25,24 @@
                 <h5 class="col"> Fecha: </h5>
                 <p class="col">{{ incidencia.fecha_reportada }}</p>
             </div>
+
             <div class="row">
                 <div class="col">
                     <a href="{% url 'incidencias:lista' %}" class="btn btn-secondary">Lista</a>
                 </div>
                 <div class="col">
-                    <a href="{% url 'incidencias:editar' incidencia.id %}" class="btn btn-secondary">Editar</a>
+                    <form enctype="multipart/form-data" method="post">
+                        {% csrf_token %}
+                        <div style="display:none; ">
+                            {{form.as_p}}
+                        </div>
+                        <button class="btn btn-danger" type="submit">Eliminar</button>
+                    </form>
                 </div>
-                <div class="col">
-                    <a href="{% url 'incidencias:eliminar' incidencia.id %}" class="btn btn-danger">Eliminar</a>
-                </div>
-            </div>
         </div>
 
 </div>
-{% endblock%}	
+
+
+
+{% endblock %}
