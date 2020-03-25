@@ -1,0 +1,24 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+<div class="offset-3 col-10 list-div">
+    <br<br><br><br>
+<div class="card bg-gradient-light w-50" style="margin-left: 30px;">
+	<div class="card-header">
+        <h3 class="card-title"> 
+            Edita tu perfil 
+        </h3>
+    </div>
+    <div class="card-body">
+        <form enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <div class="text-right" style="margin-top: 0.75rem;">
+                <button class="btn btn-secondary" style="margin-top: 15px;" type = "submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+{% endblock %}

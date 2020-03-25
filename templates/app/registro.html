@@ -1,0 +1,68 @@
+{% extends 'app/auth_base.html' %}
+
+{% block body_block %}
+{% if estado_registro %}
+  <h1>Registro exitoso</h1>
+  <hr>
+  <a class="small" href="{% url 'ingreso' %}">Inicia Sesion</a>
+{% else %}
+  <h4>Registro</h4>
+  <form enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+    {{ formu_usuario.errors }}
+    <div class="form-group row">
+      <label for="username" class="col-sm-4 col-form-label">Usuario</label>
+      <div class="col-sm-8">
+        {{ formu_usuario.username }}
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="contraseña" class="col-sm-4 col-form-label">Contraseña</label>
+      <div class="col-sm-8">
+        {{ formu_usuario.password }}
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="email" class="col-sm-4 col-form-label">Email</label>
+      <div class="col-sm-8">
+        {{ formu_usuario.email }}
+      </div>
+    </div>
+    {{ formu_perfil.errors }}
+    <div class="form-group row">
+      <label for="cargo" class="col-sm-4 col-form-label">Cargo</label>
+      <div class="col-sm-8">
+        {{ formu_perfil.cargo }}
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="nombre" class="col-sm-4 col-form-label">Nombre</label>
+      <div class="col-sm-8">
+        {{ formu_perfil.nombre }}
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="apellido" class="col-sm-4 col-form-label">Apellido</label>
+      <div class="col-sm-8">
+        {{ formu_perfil.apellido }}
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="foto"> Foto de Perfil</label>
+      <div >
+        {{ formu_perfil.foto_de_perfil }}
+      </div>
+    </div>
+    <!-- <div class="custom-file">
+      {{ formu_perfil.foto_de_perfil }}
+    <label class="custom-file-label" for="id_foto_de_perfil"> Foto de Perfil</label>
+  </div> -->
+
+    <button class="btn btn-secondary" type="submit" name="" value="Registrarse">
+      Registrarse
+    </button>
+  </form>
+  <hr>
+  <a class="small" href="{% url 'ingreso' %}">Inicia Sesion</a>
+{% endif %}
+{% endblock %}

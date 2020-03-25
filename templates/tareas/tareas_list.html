@@ -1,0 +1,173 @@
+{% extends 'app/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="offset-1 col-10 list-div">
+	<div class="row d-flex justify-content-center">
+		<div class="col-md col-lg-5">
+		<div class="overview-item overview-item--c4">
+			<div class="overview__inner">
+				<div class="overview-box clearfix">
+					<div class="icon">
+						<i class="fas fa-calendar-check"></i>
+					</div>
+					<div class="text">
+						<h2>{{ tareasFinalizadas }}</h2>
+						<span>Tareas</span>
+						<span>Finalizadas</span>
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md col-lg-5">
+			<div class="overview-item overview-item--c3 ">
+				<div class="overview__inner">
+					<div class="overview-box clearfix">
+						<div class="icon">
+							<i class="fas fa-calendar-minus"></i>
+						</div>
+						<div class="text">
+							<h2>{{ tareasPorHacer }}</h2>
+							<span>Tareas</span>
+							<span>Por Terminar</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-3">
+			<form method="GET" id="search-form">
+				<input class="form-control" type="text" id="search" name="search" placeholder="Nombre Tarea..." value="{{ request.GET.search }}"><i class="fas fa-search"></i></input>
+			</form>
+		</div>
+		
+		<form method='get'>
+			<div class="row text-right">
+				{% crispy myFilter.form %}
+				
+				<div class="pull-right align-middle">
+					<span class="align-middle">
+						<input type="submit" class="btn-secondary btn-sm offset-1" Value="Filtrar" style="vertical-align: middle; line-height:28px;"></input>
+					</span>	
+				</div>
+			
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class="container" style="margin-top: 1rem;">
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">Nombre Tarea</th>
+			<th scope="col">Tiempo</th>
+			<th scope="col">Status</th>
+			<th scope="col"></th>
+			<th scope="col"></th>
+			<th scope="col"></th>	
+		</tr>
+
+
+		
+	</thead>
+	
+	<tbody>
+		{% if tareas %}
+		{% for tarea in tareas %}
+		<tr>
+			<td>{{ tarea.nombre_tarea }}</td>
+			<td>{{ tarea.tiempo_total_formato }}</td>
+			{% if tarea.status == 'activa' %}
+				<td><span class="badge badge-secondary">Por Terminar</span></td>
+				<td>
+					<a href="{% url 'tarea:iniciar' tarea.id %}" class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true">Reanudar</a>
+				</td>
+				<td>
+					<a href="{% url 'tarea:finalizar' tarea.id %}" class="btn btn-outline-success btn-sm" role="button" aria-pressed="true">Finalizar</a>
+				</td>
+			{% else %}
+			<td class="project-state">
+				<span class="badge badge-success">Finalizada</span>
+			</td>
+			<td></td>
+			<td><i class="fas fa-check"></i></td>
+			{% endif %}
+			<td class="project-actions text-right">
+				<a class="btn btn-primary btn-sm" href="{% url 'tarea:mostrar_tarea' tarea.id %}">
+					<i class="far fa-eye"></i>
+				</a>
+				<a class="btn btn-info btn-sm" href="{% url 'tarea:modificar_tarea' tarea.id %}">
+					<i class="fas fa-edit"></i>
+				</a>
+				<a href="#myModal" class="btn btn-danger btn-sm" data-toggle="modal">
+					<i class="far fa-trash-alt"></i>
+				</a>
+			</td>			
+		</tr>
+
+		<!-- Modal para eliminar tarea -->
+		<div id="myModal" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Confirmación</h5>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					<div class="modal-body">
+						<p>¿Seguro que quieres eliminar la tarea, "{{ tarea.nombre_tarea }}"?</p>
+						<p class="text-secondary"><small>Si lo haces no podrás recuperarla :(</small></p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+						<a class="btn btn-danger" href="{% url 'tarea:eliminar_tarea' tarea.id %}">Eliminar</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+
+		{% else %}
+		<div class="offset-3 col-12 list-div">
+			<div class="card bg-gradient-light w-50" style="margin-left: 30px;">
+				<div class="card-body">
+					<h1>No hay tareas disponibles</h1>
+				</div>
+			</div>
+		</div>
+		{% endif %}		
+       
+	</tbody>
+</table>
+</div>
+
+<div class="offset-5 col-10 list-div" style="margin-top: 1rem;">
+	<a href="{% url 'tarea:agregar_tarea' %}" class="btn btn-secondary" style="margin-top: 30px;" role="button" aria-pressed="true">Agregar Tarea</a>
+</div>
+
+<div class="offset-1 col-10 list-div" style="margin-top: 2rem;">
+	<div class="pagination">
+		<span class="step-links">
+			{% if tareas.has_previous %}
+			<li class="page-item"><a class="page-link" href="?page={{ tareas.previous_page_number }}"><i class="fas fa-arrow-left"></i></a></li>
+			{% endif %}
+
+			{% if tareas.paginator.num_pages %}
+			<span class="current">
+				{{ tareas.number}} de {{ tareas.paginator.num_pages}}
+			</span>
+			{% endif %}
+			{% if tareas.has_next %}
+			<li class="page-item"><a class="page-link" href="?page={{ tareas.next_page_number }}"><i class="fas fa-arrow-right"></i></a></li>
+			{% endif %}
+		</span>
+	</div>
+</div>
+
+{% endblock%}

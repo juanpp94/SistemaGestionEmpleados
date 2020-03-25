@@ -1,0 +1,81 @@
+{% extends 'app/base.html' %}
+{% block content %}
+<div class="offset-1 col-10 list-div">
+    {% if tarea.status == 'activa' %}
+        <br><br>
+        <div class="card bg-gradient-light mb-3" style="max-width: 80rem;">
+            <div class="card-header">
+    
+            <h1>Tarea: {{tarea.nombre_tarea}}</h1>
+            <h4><span class="badge badge-secondary">Por Terminar</span></h4>
+            <br></div>
+            <div class="card-body">
+            <div class="container-fluid">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md- col-lg-4">
+                        <div class="overview-item overview-item--c2">
+                            <div class="overview__inner">
+                                <div class="overview-box clearfix">
+                                    <div class="icon">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div class="text">
+                                        <h2>{{tarea.tiempo_total_formato}}</h2>
+                                        <span>invertidos<span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="card text-white bg-gradient-info mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Descripción</div>
+                        <div class="card-body">
+                        <p class="card-text">{{tarea.descripcion}}</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+		
+    {% else %}
+    <br><br>
+    <div class="card bg-gradient-light mb-3" style="max-width: 80rem;">
+        <div class="card-header">
+
+        <h1>Tarea: {{tarea.nombre_tarea}}</h1>
+        <h4><span class="badge badge-success">Finalizada</span></h4>
+        <br></div>
+        <div class="card-body">
+        <div class="container-fluid">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md- col-lg-4">
+                    <div class="overview-item overview-item--c2">
+                        <div class="overview__inner">
+                            <div class="overview-box clearfix">
+                                <div class="icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="text">
+                                    <h2>{{tarea.tiempo_total_formato}}</h2>
+                                    <span>invertidos<span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card text-white bg-gradient-info mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Descripción</div>
+                    <div class="card-body">
+                    <p class="card-text">{{tarea.descripcion}}</p>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+	{% endif %}
+</div>
+{% endblock%}
