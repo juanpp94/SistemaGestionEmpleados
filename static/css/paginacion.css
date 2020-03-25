@@ -75,7 +75,7 @@
 input {
     display:none;
 }
-label, label:before, #fakeStop {
+label[for=button1], label[for=button2], label:before, #fakeStop {
     display:block;
     position:absolute;
     margin:3px 0 0 -50px;
