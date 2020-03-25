@@ -1,5 +1,11 @@
 import os
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "aesirsistemas@gmail.com"
+EMAIL_HOST_PASSWORD = "963django%"
+EMAIL_PORT = "587"
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 MEDIA_DIR = os.path.join(BASE_DIR,'media')
