@@ -1,8 +1,0 @@
-{% extends 'app/base.html' %}
-{% block content %}
-<form enctype="multipart/form-data" method="POST">
-{% csrf_token %}
-{{ formu_tarea.as_p }}
-<input type="submit" name="" value="Empezar">
-</form>
-{% endblock%}
