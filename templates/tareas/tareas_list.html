@@ -12,7 +12,7 @@
 						<i class="fas fa-calendar-check"></i>
 					</div>
 					<div class="text">
-						<h2>Nro</h2>
+						<h2>{{tareasFinalizadas}}</h2>
 						<span>Tareas</span>
 						<span>Finalizadas</span>
 					</div>
@@ -28,7 +28,7 @@
 							<i class="fas fa-calendar-minus"></i>
 						</div>
 						<div class="text">
-							<h2>Nro</h2>
+							<h2>{{tareasPorHacer}}</h2>
 							<span>Tareas</span>
 							<span>Por Terminar</span>
 						</div>
@@ -121,7 +121,7 @@
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 					</div>
 					<div class="modal-body">
-						<p>¿Seguro que quieres eliminar la tarea, "{{ tarea.nombre_tarea }}"?</p>
+						<p>¿Seguro que quieres eliminar la tarea, "{{tarea.nombre_tarea }}"?</p>
 						<p class="text-secondary"><small>Si lo haces no podrás recuperarla :(</small></p>
 					</div>
 					<div class="modal-footer">
