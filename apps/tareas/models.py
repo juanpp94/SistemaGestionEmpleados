@@ -14,5 +14,5 @@ class Tarea(models.Model):
     tiempo_total = models.FloatField(default=0.0)
     tiempo_total_formato = models.CharField(max_length=100, null=True)
     status = models.CharField("",max_length=10, null=True, choices=CHOICES)
+    descripcion = models.TextField(max_length=200,null=True)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    #descripcion = models.TextField(max_length=200)

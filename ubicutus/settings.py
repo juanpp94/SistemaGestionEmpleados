@@ -25,12 +25,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_filters',
+    'crispy_forms',
     'app',
     'apps.perfil',
     'apps.tareas',
-    'django_filters',
-    'crispy_forms',
-    'apps.incidencias'
+    'apps.incidencias',
+    'apps.vacaciones'
 ]
 
 MIDDLEWARE = [
@@ -72,11 +73,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'ubic',
         'USER': 'postgres',
-<<<<<<< HEAD
-        'PASSWORD': 'zack7zell8',
-=======
         'PASSWORD': 'postgres',
->>>>>>> a4a93ef480d60d3898f202d7756caf2a39d2de89
         'HOST': 'localhost',
         'PORT': 5432,
     }
