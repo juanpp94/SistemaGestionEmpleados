@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^usuario/',include('apps.perfil.urls')),
     url(r'^tarea/',include('apps.tareas.urls')),
     url(r'^incidencias/',include('apps.incidencias.urls')),
+    url(r'^vacaciones/',include('apps.vacaciones.urls')),
 ]
 
 if settings.DEBUG:

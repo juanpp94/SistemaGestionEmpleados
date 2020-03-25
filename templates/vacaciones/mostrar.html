@@ -1,0 +1,60 @@
+{% extends 'app/base.html' %}
+{% block content %}
+{% if vacaciones %}
+<div class="row">
+	<h1 style="margin-left: 20px;">Solicitudes</h1> 
+</div>
+<div class="container" style="margin-top: 1rem;">
+    <table class="table table-striped">¨
+        <thead>
+            {% if vacaciones.status == "Pendiente" or  vacaciones.status == "Finalizada" %}
+            <tr>
+                <th scope="col">Cantidad de dias</th>
+                <th scope="col">Status</th>
+            </tr>
+            {% elif vacaciones.status == "Aprobada" %}
+            <tr>
+                <th scope="col">Cantidad de dias</th>
+                <th scope="col">Status</th>
+                <th></th>
+            </tr>
+            {% elif vacaciones.status == "Activa" %}
+            <tr>
+                <th scope="col">Cantidad de dias</th>
+                <th scope="col">Status</th>
+                <th scope="col">Fecha de inicio</th>
+                <th scope="col">Dias consumidos</th>
+                <th scope="col">Dias restantes</th>
+                
+            </tr>
+            {% endif %}
+    
+    
+            
+        </thead>
+        
+        <tbody>
+            <tr>
+                <td>{{ vacaciones.nro_dias }}</td>
+                <td>{{ vacaciones.status }}</td>
+                {% if vacaciones.status == "Aprobada" %}
+                <td>
+                    <a href="{% url 'vacaciones:iniciar' vacaciones.id %}" class="btn btn-outline-success btn-sm" role="button" aria-pressed="true">Iniciar</a>
+                </td>
+                {% elif vacaciones.status == "Activa" %}
+                <td>{{ vacaciones.fecha_inicio }}</td>
+                <td>{{ dias_consumidos }}</td>
+                <td>{{ dias_restantes }}</td>
+                {% endif %}
+            </tr>    
+                
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="row">
+	<h1 style="margin-left: 20px;">No existen solicitudes</h1> 
+</div>
+{% endif %}
+
+{% endblock%}	
