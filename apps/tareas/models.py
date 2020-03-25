@@ -13,5 +13,5 @@ class Tarea(models.Model):
     tiempo_fin = models.DateTimeField(auto_now=True, auto_now_add=False)
     tiempo_total = models.FloatField(default=0.0)
     tiempo_total_formato = models.CharField(max_length=100, null=True)
-    status = models.CharField(max_length=10, null=True, choices=CHOICES)
+    status = models.CharField("",max_length=10, null=True, choices=CHOICES)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)

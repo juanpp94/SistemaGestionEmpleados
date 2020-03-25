@@ -1,5 +1,5 @@
-
 {% extends 'app/base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
 
 <div class="offset-1 col-10 list-div">
@@ -48,8 +48,16 @@
 		</div>
 		
 		<form method='get'>
-				{{myFilter.form}}
-			<button class="btn-secondary btn-sm" type='submit'>Buscar</button>
+			<div class="row text-right">
+				{% crispy myFilter.form %}
+				
+				<div class="pull-right align-middle">
+					<span class="align-middle">
+						<input type="submit" class="btn-secondary btn-sm offset-1" Value="Filtrar" style="vertical-align: middle; line-height:28px;"></input>
+					</span>	
+				</div>
+			
+			</div>
 		</form>
 	</div>
 </div>
@@ -139,7 +147,7 @@
 </table>
 </div>
 
-<div class="offset-5 col-10 list-div" style="margin-top: 2rem;">
+<div class="offset-5 col-10 list-div" style="margin-top: 1rem;">
 	<a href="{% url 'tarea:agregar_tarea' %}" class="btn btn-secondary" style="margin-top: 30px;" role="button" aria-pressed="true">Agregar Tarea</a>
 </div>
 
