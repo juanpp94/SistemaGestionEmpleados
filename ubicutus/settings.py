@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'apps.tareas',
     'django_filters',
     'crispy_forms',
+    'apps.incidencias'
 ]
 
 MIDDLEWARE = [
@@ -65,7 +66,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'ubic',
         'USER': 'postgres',
-        'PASSWORD': 'cututu',
+        'PASSWORD': 'postgres',
         'HOST': 'localhost',
         'PORT': 5432,
     }
