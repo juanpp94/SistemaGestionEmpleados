@@ -16,3 +16,9 @@ class VacacionesForm(forms.ModelForm):
         widgets = {
             'nro_dias' : forms.TextInput(attrs={'class':'form-control'}),
         }
+    def clean_nro_dias(self): 
+        data = self.cleaned_data['nro_dias']
+        if data > 19:
+            raise forms.ValidationError("Numero de dias invalidos")
+
+        return data   
