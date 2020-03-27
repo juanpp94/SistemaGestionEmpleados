@@ -24,7 +24,6 @@
 <div class="container">
 	<table class="table table-striped">
 		<thead>
-			<tr>
 				<th scope="col">Nombre Tarea</th>
 				<th scope="col">Tiempo</th>
 				<th scope="col">Status</th>
@@ -97,7 +96,12 @@
 					</div>
 				</div>
 			</div>
-			{% endif %}		
+			{% endif %}	
+			<tr>
+				<td>
+					Tiempo total de tareas: {{ formato_dia }}
+				</td>
+			</tr>	
 		
 		</tbody>	
 	</table>
@@ -218,7 +222,12 @@
 					</div>
 				</div>
 			</div>
-			{% endif %}		
+			{% endif %}	
+			<tr>
+				<td>
+					Tiempo total de tareas: {{ formato_sem }}
+				</td>
+			</tr>	
 		
 		</tbody>
 	</table>
@@ -340,7 +349,12 @@
 					</div>
 				</div>
 			</div>
-			{% endif %}		
+			{% endif %}
+			<tr>
+				<td>
+					Tiempo total de tareas: {{ formato_mes }}
+				</td>
+			</tr>		
 		
 		</tbody>
 	</table>

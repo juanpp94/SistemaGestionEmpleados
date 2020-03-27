@@ -100,9 +100,33 @@ def finalizar_tarea(request, pk):
 def horas(request):
     user= request.user.id  
     hoy = datetime.now(timezone.utc).date()
+    horas_tot = 0
     lista_tareas_dia = Tarea.objects.filter(usuario_id=user, tiempo_fin__date= hoy)
+    for tarea in lista_tareas_dia:
+    	horas_tot = horas_tot + tarea.tiempo_total
+    horas = int(horas_tot // 3600)
+    minutos = int((horas_tot % 3600) // 60)
+    segundos = int(horas_tot % 60)
+    formato_dia = '{} horas, {} minutos, {} segundos'.format(horas, minutos, segundos)	
+
     lista_tareas_sem = Tarea.objects.filter(usuario_id=user, tiempo_fin__date__range = (hoy - timedelta(days = 7), hoy))
+    horas_tot = 0
+    for tarea in lista_tareas_sem:
+    	horas_tot = horas_tot + tarea.tiempo_total
+    horas = int(horas_tot // 3600)
+    minutos = int((horas_tot % 3600) // 60)
+    segundos = int(horas_tot % 60)
+    formato_sem = '{} horas, {} minutos, {} segundos'.format(horas, minutos, segundos)
+
     lista_tareas_mes = Tarea.objects.filter(usuario_id=user, tiempo_fin__year = hoy.year, tiempo_fin__month= hoy.month)
+    horas_tot = 0
+    for tarea in lista_tareas_mes:
+    	horas_tot = horas_tot + tarea.tiempo_total
+    horas = int(horas_tot // 3600)
+    minutos = int((horas_tot % 3600) // 60)
+    segundos = int(horas_tot % 60)
+    formato_mes = '{} horas, {} minutos, {} segundos'.format(horas, minutos, segundos)
+
     paginator = Paginator(lista_tareas_dia,5)
     pagina = request.GET.get('page')
     tareas_dia = paginator.get_page(pagina)
@@ -112,4 +136,4 @@ def horas(request):
     paginator = Paginator(lista_tareas_mes,5)
     pagina = request.GET.get('page')
     tareas_mes = paginator.get_page(pagina)
-    return render(request,'tareas/tareas_horas.html',{'tareas_dia' : tareas_dia, 'tareas_sem' : tareas_sem, 'tareas_mes' : tareas_mes})
+    return render(request,'tareas/tareas_horas.html',{'tareas_dia' : tareas_dia, 'tareas_sem' : tareas_sem, 'tareas_mes' : tareas_mes,'formato_dia':formato_dia,'formato_mes':formato_mes,'formato_sem':formato_sem})
