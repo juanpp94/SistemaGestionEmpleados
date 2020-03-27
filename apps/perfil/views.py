@@ -22,6 +22,7 @@ def perfil_edit(request):
         form = PerfilForm(request.POST,instance=perfil)
         if form.is_valid():
             new_perfil = form.save(commit=False)
+            new_perfil.user_id = user
             if 'foto_de_perfil' in request.FILES:
                 new_perfil.foto_de_perfil = request.FILES['foto_de_perfil']
             new_perfil.save()
