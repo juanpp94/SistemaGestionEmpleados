@@ -1,95 +1,96 @@
 {% extends 'app/base.html' %}
 {% block content %}
 
-<!--Cronometro-->
-
-<div style="position:relative; left: 50%; top: 50%; transform: translateX(-50%); margin-top: 150px">
-
-	<!--<link rel="stylesheet" type="text/css" href="crono.css"/>-->
-	<div id="wrapper333" style="position:relative; left: 50%; transform: translateX(-50%);">
-
-		<!--<form class="form-group" action="{% url 'tarea:tiempo' tarea.id %}">
-		<button id="button1" data-title="PAUSE" type="submit"></button>-->
-		<input type="checkbox" id="button1" checked>
-		<!--<label for="button1" data-title=""></label>-->
-		<!--<input type="checkbox" id="button2">
-		<label for="button2" data-title="PLAY" action="{% url 'tarea:tiempo' tarea.id %}"></label>-->
-		<!--<span id="fakeStop"></span>-->
-		<div class="digit dp100000 d6">
-		<div class="particle top"></div>
-		<div class="particle top right"></div>
-		<div class="particle top left"></div>
-		<div class="particle middle"></div>
-		<div class="particle bottom right"></div>
-		<div class="particle bottom left"></div>
-		<div class="particle bottom"></div>
+<div class="container" style="margin-left: 30px;">
+	<div class="row">
+		<h1 class="h2 mb-0 text-gray-800">¡La tarea "{{tarea.nombre_tarea}}" está en proceso!</h1>
 	</div>
-	<div class="digit dp10000">
-		<div class="particle top"></div>
-		<div class="particle top right"></div>
-		<div class="particle top left"></div>
-		<div class="particle middle"></div>
-		<div class="particle bottom right"></div>
-		<div class="particle bottom left"></div>
-		<div class="particle bottom"></div>
+	<!--Cronometro-->
+	
+	<div class="row justify-content-center" style="margin-top: 30px;" >
+	
+		<!--<link rel="stylesheet" type="text/css" href="crono.css"/>-->
+		<div id="wrapper333">
+	
+			<!--<form class="form-group" action="{% url 'tarea:tiempo' tarea.id %}">
+			<button id="button1" data-title="PAUSE" type="submit"></button>-->
+			<input type="checkbox" id="button1" checked>
+			<!--<label for="button1" data-title=""></label>-->
+			<!--<input type="checkbox" id="button2">
+			<label for="button2" data-title="PLAY" action="{% url 'tarea:tiempo' tarea.id %}"></label>-->
+			<!--<span id="fakeStop"></span>-->
+			<div class="digit dp100000 d6">
+			<div class="particle top"></div>
+			<div class="particle top right"></div>
+			<div class="particle top left"></div>
+			<div class="particle middle"></div>
+			<div class="particle bottom right"></div>
+			<div class="particle bottom left"></div>
+			<div class="particle bottom"></div>
+		</div>
+		<div class="digit dp10000">
+			<div class="particle top"></div>
+			<div class="particle top right"></div>
+			<div class="particle top left"></div>
+			<div class="particle middle"></div>
+			<div class="particle bottom right"></div>
+			<div class="particle bottom left"></div>
+			<div class="particle bottom"></div>
+		</div>
+		<div class="separator">
+			<div class="dot top"></div>
+			<div class="dot bottom"></div>
+		</div>
+		<div class="digit dp1000 d6">
+			<div class="particle top"></div>
+			<div class="particle top right"></div>
+			<div class="particle top left"></div>
+			<div class="particle middle"></div>
+			<div class="particle bottom right"></div>
+			<div class="particle bottom left"></div>
+			<div class="particle bottom"></div>
+		</div>
+		<div class="digit dp100">
+			<div class="particle top"></div>
+			<div class="particle top right"></div>
+			<div class="particle top left"></div>
+			<div class="particle middle"></div>
+			<div class="particle bottom right"></div>
+			<div class="particle bottom left"></div>
+			<div class="particle bottom"></div>
+		</div>
+		<div class="separator">
+			<div class="dot top"></div>
+			<div class="dot bottom"></div>
+		</div>
+		<div class="digit dp10">
+			<div class="particle top"></div>
+			<div class="particle top right"></div>
+			<div class="particle top left"></div>
+			<div class="particle middle"></div>
+			<div class="particle bottom right"></div>
+			<div class="particle bottom left"></div>
+			<div class="particle bottom"></div>
+		</div>
+		<div class="digit dp1">
+			<div class="particle top"></div>
+			<div class="particle top right"></div>
+			<div class="particle top left"></div>
+			<div class="particle middle"></div>
+			<div class="particle bottom right"></div>
+			<div class="particle bottom left"></div>
+			<div class="particle bottom"></div>
+		  </div>
+		</div>
+	
+	
 	</div>
-	<div class="separator">
-		<div class="dot top"></div>
-		<div class="dot bottom"></div>
+	
+	<div class="row justify-content-center" style="margin-top: 30px;">
+		<form class="form-group" action="{% url 'tarea:tiempo' tarea.id %}">
+			<button class="btn btn-secondary" type="submit"><i class="fa fa-pause"></i>  Pausar</button>
+		</form> 
 	</div>
-	<div class="digit dp1000 d6">
-		<div class="particle top"></div>
-		<div class="particle top right"></div>
-		<div class="particle top left"></div>
-		<div class="particle middle"></div>
-		<div class="particle bottom right"></div>
-		<div class="particle bottom left"></div>
-		<div class="particle bottom"></div>
-	</div>
-	<div class="digit dp100">
-		<div class="particle top"></div>
-		<div class="particle top right"></div>
-		<div class="particle top left"></div>
-		<div class="particle middle"></div>
-		<div class="particle bottom right"></div>
-		<div class="particle bottom left"></div>
-		<div class="particle bottom"></div>
-	</div>
-	<div class="separator">
-		<div class="dot top"></div>
-		<div class="dot bottom"></div>
-	</div>
-	<div class="digit dp10">
-		<div class="particle top"></div>
-		<div class="particle top right"></div>
-		<div class="particle top left"></div>
-		<div class="particle middle"></div>
-		<div class="particle bottom right"></div>
-		<div class="particle bottom left"></div>
-		<div class="particle bottom"></div>
-	</div>
-	<div class="digit dp1">
-		<div class="particle top"></div>
-		<div class="particle top right"></div>
-		<div class="particle top left"></div>
-		<div class="particle middle"></div>
-		<div class="particle bottom right"></div>
-		<div class="particle bottom left"></div>
-		<div class="particle bottom"></div>
-	  </div>
-	</div>
-
-
-</div>
-
-<div class="row" style="position: relative; right: 45%">
-   	<h1 class="h2 mb-0 text-gray-800">¡La tarea "{{tarea.nombre_tarea}}" está en proceso!</h1>
-</div>
-
-<div style="position:relative; left: 50%; top: 50%; transform: translateX(-50%); margin-top: 30px;">
-	<form class="form-group" action="{% url 'tarea:tiempo' tarea.id %}">
-	    <button class="btn btn-secondary" type="submit"><i class="fa fa-pause"></i>  Pausar</button>
-	</form> 
 </div>
 
 
