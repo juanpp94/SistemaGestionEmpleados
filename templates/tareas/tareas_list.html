@@ -2,6 +2,11 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
+ <!-- Page Heading -->
+ <div class="d-sm-flex align-items-center justify-content-between mb-4">
+	<h1 class="h2 mb-0 text-gray-800">¡Te encuentras en la sección de tareas!</h1>
+  </div>
+
 <div class="offset-1 col-10 list-div">
 	<div class="row d-flex justify-content-center">
 		<div class="col-md col-lg-5">
@@ -51,11 +56,7 @@
 			<div class="row text-right">
 				{% crispy myFilter.form %}
 				
-				<div class="pull-right align-middle">
-					<span class="align-middle">
-						<input type="submit" class="btn-secondary btn-sm offset-1" Value="Filtrar" style="vertical-align: middle; line-height:28px;"></input>
-					</span>	
-				</div>
+				<input type="submit" class="btn-secondary btn-sm offset-1" Value="Filtrar"></input>
 			
 			</div>
 		</form>
@@ -134,12 +135,11 @@
 		{% endfor %}
 
 		{% else %}
-		<div class="offset-3 col-12 list-div">
-			<div class="card bg-gradient-light w-50" style="margin-left: 30px;">
-				<div class="card-body">
-					<h1>No hay tareas disponibles</h1>
-				</div>
+		<div class="offset-4 col-12 list-div">
+			<div class="d-sm-flex align-items-center justify-content-between mb-4">
+				<h2 class="h3 mb-0 text-gray-800">No hay tareas disponibles</h2>
 			</div>
+
 		</div>
 		{% endif %}		
        
@@ -148,7 +148,7 @@
 </div>
 
 <div class="offset-5 col-10 list-div" style="margin-top: 1rem;">
-	<a href="{% url 'tarea:agregar_tarea' %}" class="btn btn-secondary" style="margin-top: 30px;" role="button" aria-pressed="true">Agregar Tarea</a>
+	<a href="{% url 'tarea:agregar_tarea' %}" class="btn btn-outline-secondary" style="margin-top: 30px;" role="button" aria-pressed="true">Agregar Tarea</a>
 </div>
 
 <div class="offset-1 col-10 list-div" style="margin-top: 2rem;">

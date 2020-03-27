@@ -9,8 +9,8 @@ class VacacionesForm(forms.ModelForm):
             'nro_dias',
             
         ]
-        labelds = {
-            'nro_dias' : 'Cantidad de dias',
+        labels = {
+            'nro_dias' : 'Cantidad de días',
             
         }
         widgets = {

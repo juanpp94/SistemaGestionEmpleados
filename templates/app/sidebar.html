@@ -30,12 +30,12 @@
             <span>Tareas</span>
         </a>
     </li>
-
-    <!-- Nav Item - Vacaciones -->
-    <li class="nav-item {% if "vacaciones" in request.resolver_match.view_name %}active{% endif %}">
-        <a class="nav-link" href="{% url 'vacaciones:mostrar' %}">
-            <i class="fas fa-fw fa-plane-departure"></i>
-            <span>Vacaciones</span>
+    
+    <!-- Nav Item - Horas -->
+    <li class="nav-item {% if "tarea" in request.resolver_match.view_name %}active{% endif %}">
+        <a class="nav-link" href="{% url 'tarea:horas' %}">
+            <i class="fas fa-clock"></i>
+            <span>Horas</span>
         </a>
     </li>
 
@@ -44,6 +44,14 @@
         <a class="nav-link" href="{% url 'incidencias:lista' %}">
             <i class="fas fa-fw fa-exclamation-circle"></i>
             <span>Incidencias</span>
+        </a>
+    </li>
+
+    <!-- Nav Item - Vacaciones -->
+    <li class="nav-item {% if "vacaciones" in request.resolver_match.view_name %}active{% endif %}">
+        <a class="nav-link" href="{% url 'vacaciones:mostrar' %}">
+            <i class="fas fa-fw fa-plane-departure"></i>
+            <span>Vacaciones</span>
         </a>
     </li>
 

@@ -1,10 +1,12 @@
 {% extends 'app/base.html' %}
 {% block content %}
-<h2 style="margin-left: 30px;"> Incidencias</h2>
 
 <div class="container" style="margin-top: 1rem;">
     
     {% if incidencias_list %}
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h2 mb-0 text-gray-800">¡Consulta las incidencias que has reportado!</h1>
+    </div>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -16,12 +18,33 @@
             </tr>
         </thead>
         
+        
         <tbody>
             {% for incidencia in incidencias_list %}
             <tr>
                 <td>{{ incidencia.titulo }}</td>
                 <td>{{ incidencia.tipo }}</td>
-                <td><span class="badge badge-secondary">{{ incidencia.estatus }}</span></td>
+
+
+                {% if incidencia.estatus == "Resuelto" %}
+                    <td class="project-state">
+                        <span class="badge badge-success">{{ incidencia.estatus }}</span>
+                    </td>
+                {% elif incidencia.estatus == "Revisado" %}
+                    <td class="project-state">
+                        <span class="badge badge-warning">{{ incidencia.estatus }}</span>
+                    </td>
+                {% elif incidencia.estatus == "Descartada" %}
+                    <td class="project-state">
+                        <span class="badge badge-danger">{{ incidencia.estatus }}</span>
+                    </td>
+                {% elif incidencia.estatus == "Por Revisar" %}
+                    <td class="project-state">
+                        <span class="badge badge-secondary">{{ incidencia.estatus }}</span>
+                    </td>
+                {% endif %}
+
+
                 <td>{{ incidencia.fecha_reportada }}</td>
                 <td class="project-actions text-right">
                     <a class="btn btn-primary btn-sm" href="{% url 'incidencias:mostrar' incidencia.id  %}">
@@ -41,18 +64,22 @@
     </table>
         
     {% else %}
-    <div class="offset-3 col-12 list-div">
-        <div class="card bg-gradient-light w-50" style="margin-left: 30px;">
-            <div class="card-body">
-                <h4>No hay incidencias disponibles</h4>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h2 mb-0 text-gray-800">¡Te encuentras en la sección de reporte de incidencias!</h1>
+    </div>
+    <div class="row">
+        <div class="offset-3 col-12 list-div" style="margin-top: 4rem;">
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h2 class="h3 mb-0 text-gray-800">Aún no has reportado incidencias</h2>
             </div>
         </div>
     </div>
+    
     {% endif %}
-
-    <div class="offset-5 col-10 list-div" style="margin-top: 2rem;">
+    
+    <div class="offset-5" style="margin-top: 1rem;">
         <a href="{% url 'incidencias:reportar' %}" 
-        class="btn btn-secondary" 
+        class="btn btn-outline-danger" 
         style="margin-top: 30px;" role="button" aria-pressed="true">Reportar Incidencia</a>
     </div>
 

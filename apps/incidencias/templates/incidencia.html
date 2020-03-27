@@ -1,14 +1,16 @@
 {% extends 'app/base.html' %}
 {% block content %}
 <div class="offset-3 col-10 list-div">
-    <div class="card bg-gradient-light w-50" style="margin-left: 30px;">
+    <div class="card bg-gradient-light w-50" style="margin-left: 40px;">
         <div class="card-header">
-            <h3 class="card-title"> Incidencia {{incidencia.titulo}} </h3>
+            <h3 class="card-title h3 mb-0 text-gray-800"> 
+                Incidencia: {{incidencia.titulo}}    
+            </h3>
         </div>
     
         <div class="card-body">
             <div class="row" style="padding: 10px;">
-                <h5 class="col"> Descripcion: </h5>
+                <h5 class="col"> Descripción: </h5>
                 <p class="col">{{ incidencia.descripcion }}</p>
             </div>
             <div class="row" style="padding: 10px;">
@@ -27,11 +29,11 @@
                 <div class="col">
                     <a href="{% url 'incidencias:lista' %}" class="btn btn-secondary">
                         <i class="fas fa-angle-left"></i>
-                        Volver a la lista
+                        Volver
                     </a>
                 </div>
                 <div class="col">
-                    <a href="{% url 'incidencias:editar' incidencia.id %}" class="btn btn-warning">
+                    <a href="{% url 'incidencias:editar' incidencia.id %}" class="btn btn-info">
                         <i class="fas fa-edit"></i>
                         Editar
                     </a>

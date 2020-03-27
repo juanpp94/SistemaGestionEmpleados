@@ -10,9 +10,9 @@ class TareaForm(forms.ModelForm):
             'descripcion'
             
         ]
-        labelds = {
+        labels = {
             'nombre_tarea' : 'Nombre',
-            'descripcion' : 'Descripcion'
+            'descripcion' : 'Descripción'
         }
         widgets = {
             'nombre_tarea' : forms.TextInput(attrs={'class':'form-control'}),

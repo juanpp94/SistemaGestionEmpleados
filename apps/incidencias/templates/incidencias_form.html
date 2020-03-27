@@ -1,19 +1,21 @@
 {% extends 'app/base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
 <div class="offset-3 col-10 list-div">
 <div class="card bg-gradient-light w-50" style="margin-left: 30px;">
 	<div class="card-header">
-        <h3 class="card-title"> 
+        <h3 class="card-title h3 mb-0 text-gray-800"> 
             {% if "editar" in request.resolver_match.view_name %}
-            Editar
+            Editar Incidencia
             {% endif %}
             Incidencia
         </h3>
+        
     </div>
     <div class="card-body">
         <form enctype="multipart/form-data" method="post">
             {% csrf_token %}
-            {{form.as_p}}
+            {{form |crispy}}
             <div class="row justify-content-between">
                 <div style="margin-top: 0.75rem; padding: 10px;">
                     <a href="{% url 'incidencias:lista' %}" class="btn btn-secondary" style="margin-top: 15px;">
@@ -22,7 +24,7 @@
                     </a>
                 </div>
                 <div style="margin-top: 0.75rem; padding: 10px;">
-                    <button class="btn btn-secondary" style="margin-top: 15px;" type = "submit">
+                    <button class="btn btn-primary" style="margin-top: 15px;" type = "submit">
                         <i class="fas fa-save"></i>
                         Guardar
                     </button>

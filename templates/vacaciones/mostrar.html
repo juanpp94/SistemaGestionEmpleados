@@ -1,18 +1,19 @@
 {% extends 'app/base.html' %}
 {% block content %}
+
 {% if vacs %}
-<div class="row">
-	<h1 style="margin-left: 20px;">Solicitudes</h1> 
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+	<h1 class="h2 mb-0 text-gray-800">¡Consulta tus solicitudes de vacaciones!</h1>
 </div>
 <div class="container" style="margin-top: 1rem;">
     <table class="table table-striped">
         <thead>
            
-                <th scope="col">Cantidad de dias</th>
+                <th scope="col">Cantidad de días</th>
                 <th scope="col">Status</th>
                 <th scope="col">Fecha de inicio</th>
-                <th scope="col">Dias consumidos</th>
-                <th scope="col">Dias restantes</th>
+                <th scope="col">Días consumidos</th>
+                <th scope="col">Días restantes</th>
                 
             
         </thead>
@@ -21,7 +22,25 @@
             {% for vacaciones in vacs %}
             <tr>
                 <td>{{ vacaciones.nro_dias }}</td>
-                <td>{{ vacaciones.status }}</td>
+
+                {% if vacaciones.status == "Aprobada" %}
+                    <td class="project-state">
+                        <span class="badge badge-success">{{ vacaciones.status }}</span>
+                    </td>
+                {% elif vacaciones.status == "Activa" %}
+                    <td class="project-state">
+                        <span class="badge badge-warning">{{ vacaciones.status }}</span>
+                    </td>
+                {% elif vacaciones.status == "Rechazada" %}
+                    <td class="project-state">
+                        <span class="badge badge-danger">{{ vacaciones.status }}</span>
+                    </td>
+                {% elif vacaciones.status == "Pendiente" %}
+                    <td class="project-state">
+                        <span class="badge badge-secondary">{{ vacaciones.status }}</span>
+                    </td>
+                {% endif %}
+
                 {% if vacaciones.status == "Aprobada" %}
                 <td>
                     <a href="{% url 'vacaciones:iniciar' vacaciones.id %}" class="btn btn-outline-success btn-sm" role="button" aria-pressed="true">Iniciar</a>
@@ -45,11 +64,21 @@
     </table>
 </div>
 {% else %}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+	<h1 class="h2 mb-0 text-gray-800">¡Te encuentras en la sección de solicitud de vacaciones!</h1>
+</div>
 <div class="row">
-    <h1 style="margin-left: 20px;">No existen solicitudes</h1> 
-    <a href="{% url 'vacaciones:solicitar' %}" class="btn btn-outline-success btn-sm" role="button" aria-pressed="true">Solicitar</a>
-</td>
+    <div class="offset-10 col-12 list-div" style="margin-top: 4rem;">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h2 class="h3 mb-0 text-gray-800">Aun no tienes solicitudes</h2>
+        </div>
+        
+    </div>
 </div>
 {% endif %}
+
+<div class="offset-5" style="margin-top: 1rem;">
+    <a href="{% url 'vacaciones:solicitar' %}" class="btn btn-outline-success" role="button" aria-pressed="true">Solicitar</a>
+</div>
 
 {% endblock%}	

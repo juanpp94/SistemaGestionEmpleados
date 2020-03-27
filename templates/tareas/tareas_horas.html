@@ -1,9 +1,13 @@
 {% extends 'app/base.html' %}
 {% block content %}
 
-<div class="offset-1 col-10 list-div">
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+	<h1 class="h2 mb-0 text-gray-800">¡Tu acumulado de horas trabajadas por dia, semana y mes!</h1>
+</div>
+
+<div class="offset-1 col-10 list-div" style="margin-top: 2rem;">
 	<div class="row d-flex justify-content-center">
-		<div class="col-md col-lg-5">
+		<div class="col col-lg-10">
 		<div class="overview-item overview-item--c3">
 			<div class="overview__inner">
 				<div class="overview-box clearfix">
@@ -11,124 +15,20 @@
 						<i class="fas fa-calendar-check"></i>
 					</div>
 					<div class="text">
-						<h2>Tareas del día</h2>
+						<h2>{{ formato_dia }}</h2>
+						<span>Total de horas invertidas en las tareas de hoy</span>
 						<br>
 					</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
-
-<div class="container">
-	<table class="table table-striped">
-		<thead>
-				<th scope="col">Nombre Tarea</th>
-				<th scope="col">Tiempo</th>
-				<th scope="col">Status</th>
-				<th scope="col"></th>
-				<th scope="col"></th>
-				<th scope="col"></th>	
-			</tr>
-			
-		</thead>
-		<tbody>
-			{% if tareas_dia %}
-			{% for tarea in tareas_dia %}
-			<tr>
-				<td>{{ tarea.nombre_tarea }}</td>
-				<td>{{ tarea.tiempo_total_formato }}</td>
-				{% if tarea.status == 'activa' %}
-					<td><span class="badge badge-secondary">Por Terminar</span></td>
-					<td>
-						<a href="{% url 'tarea:iniciar' tarea.id %}" class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true">Reanudar</a>
-					</td>
-					<td>
-						<a href="{% url 'tarea:finalizar' tarea.id %}" class="btn btn-outline-success btn-sm" role="button" aria-pressed="true">Finalizar</a>
-					</td>
-				{% else %}
-				<!--<td style="color: darkblue;">Finalizada</a></td>-->
-				<td class="project-state">
-					<span class="badge badge-success">Finalizada</span>
-				</td>
-				<td></td>
-				<td><i class="fas fa-check"></i></td>
-				{% endif %}
-				<td class="project-actions text-right">
-					<a class="btn btn-primary btn-sm" href="{% url 'tarea:mostrar_tarea' tarea.id %}">
-						<i class="far fa-eye"></i>
-					</a>
-					<a class="btn btn-info btn-sm" href="{% url 'tarea:modificar_tarea' tarea.id %}">
-						<i class="fas fa-edit"></i>
-					</a>
-					<a href="#myModal" class="btn btn-danger btn-sm" data-toggle="modal">
-						<i class="far fa-trash-alt"></i>
-					</a>
-				</td>		
-			</tr>
-			<!-- Modal para eliminar tarea -->
-			<div id="myModal" class="modal fade">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">Confirmación</h5>
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-						</div>
-						<div class="modal-body">
-							<p>¿Seguro que quieres eliminar la tarea, "{{ tarea.nombre_tarea }}"?</p>
-							<p class="text-secondary"><small>Si lo haces no podrás recuperarla :(</small></p>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-							<a class="btn btn-danger" href="{% url 'tarea:eliminar_tarea' tarea.id %}">Eliminar</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			{% endfor %}
-
-			{% else %}
-			<div class="offset-3 col-12 list-div">
-				<div class="card bg-gradient-light w-50" style="margin-left: 30px;">
-					<div class="card-body">
-						<h1>No hay tareas disponibles</h1>
-					</div>
-				</div>
-			</div>
-			{% endif %}	
-			<tr>
-				<td>
-					Tiempo total de tareas: {{ formato_dia }}
-				</td>
-			</tr>	
-		
-		</tbody>	
-	</table>
-</div>
-
-<div class="offset-1 col-10 list-div" style="margin-top: 1rem;">
-	<div class="pagination">
-		<span class="step-links">
-			{% if tareas_dia.has_previous %}
-			<li class="page-item"><a class="page-link" href="?page={{ tareas.previous_page_number }}"><i class="fas fa-arrow-left"></i></a></li>
-			{% endif %}
-
-			{% if tareas_dia.paginator.num_pages %}
-			<span class="current">
-				{{ tareas.number}} de {{ tareas.paginator.num_pages}}
-			</span>
-			{% endif %}
-			{% if tareas_dia.has_next %}
-			<li class="page-item"><a class="page-link" href="?page={{ tareas.next_page_number }}"><i class="fas fa-arrow-right"></i></a></li>
-			{% endif %}
-		</span>
 	</div>
 </div>
 
 <div class="offset-1 col-10 list-div" style="margin-top: 2rem;">
 	<div class="row d-flex justify-content-center">
-		<div class="col-md col-lg-7">
+		<div class="col col-lg-10">
 		<div class="overview-item overview-item--c3">
 			<div class="overview__inner">
 				<div class="overview-box clearfix">
@@ -136,7 +36,8 @@
 						<i class="fas fa-calendar-check"></i>
 					</div>
 					<div class="text">
-						<h2>Tareas de la semana</h2>
+						<h2>{{ formato_sem }}</h2>
+						<span>Total de horas ivertidas en las tareas de la semana</span>
 						<br>
 					</div>
 					</div>
@@ -145,117 +46,10 @@
 		</div>
 	</div>
 </div>
-
-<div class="container">
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th scope="col">Nombre Tarea</th>
-				<th scope="col">Tiempo</th>
-				<th scope="col">Status</th>
-				<th scope="col"></th>
-				<th scope="col"></th>
-				<th scope="col"></th>	
-			</tr>
-			
-		</thead>
-		<tbody>
-			{% if tareas_sem %}
-			{% for tarea in tareas_sem %}
-			<tr>
-				<td>{{ tarea.nombre_tarea }}</td>
-				<td>{{ tarea.tiempo_total_formato }}</td>
-				{% if tarea.status == 'activa' %}
-					<td><span class="badge badge-secondary">Por Terminar</span></td>
-					<td>
-						<a href="{% url 'tarea:iniciar' tarea.id %}" class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true">Reanudar</a>
-					</td>
-					<td>
-						<a href="{% url 'tarea:finalizar' tarea.id %}" class="btn btn-outline-success btn-sm" role="button" aria-pressed="true">Finalizar</a>
-					</td>
-				{% else %}
-				<!--<td style="color: darkblue;">Finalizada</a></td>-->
-				<td class="project-state">
-					<span class="badge badge-success">Finalizada</span>
-				</td>
-				<td></td>
-				<td><i class="fas fa-check"></i></td>
-				{% endif %}
-				<td class="project-actions text-right">
-					<a class="btn btn-primary btn-sm" href="{% url 'tarea:mostrar_tarea' tarea.id %}">
-						<i class="far fa-eye"></i>
-					</a>
-					<a class="btn btn-info btn-sm" href="{% url 'tarea:modificar_tarea' tarea.id %}">
-						<i class="fas fa-edit"></i>
-					</a>
-					<a href="#myModal" class="btn btn-danger btn-sm" data-toggle="modal">
-						<i class="far fa-trash-alt"></i>
-					</a>
-				</td>				
-			</tr>
-			<!-- Modal para eliminar tarea -->
-			<div id="myModal" class="modal fade">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">Confirmación</h5>
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-						</div>
-						<div class="modal-body">
-							<p>¿Seguro que quieres eliminar la tarea, "{{ tarea.nombre_tarea }}"?</p>
-							<p class="text-secondary"><small>Si lo haces no podrás recuperarla :(</small></p>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-							<a class="btn btn-danger" href="{% url 'tarea:eliminar_tarea' tarea.id %}">Eliminar</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			{% endfor %}
-
-			{% else %}
-			<div class="offset-3 col-12 list-div">
-				<div class="card bg-gradient-light w-50" style="margin-left: 30px;">
-					<div class="card-body">
-						<h1>No hay tareas disponibles</h1>
-					</div>
-				</div>
-			</div>
-			{% endif %}	
-			<tr>
-				<td>
-					Tiempo total de tareas: {{ formato_sem }}
-				</td>
-			</tr>	
-		
-		</tbody>
-	</table>
-</div>
-
-<div class="offset-1 col-10 list-div" style="margin-top: 1rem;">
-	<div class="pagination">
-		<span class="step-links">
-			{% if tareas_sem.has_previous %}
-			<li class="page-item"><a class="page-link" href="?page={{ tareas.previous_page_number }}"><i class="fas fa-arrow-left"></i></a></li>
-			{% endif %}
-
-			{% if tareas_sem.paginator.num_pages %}
-			<span class="current">
-				{{ tareas.number}} de {{ tareas.paginator.num_pages}}
-			</span>
-			{% endif %}
-			{% if tareas_sem.has_next %}
-			<li class="page-item"><a class="page-link" href="?page={{ tareas.next_page_number }}"><i class="fas fa-arrow-right"></i></a></li>
-			{% endif %}
-		</span>
-	</div>
-</div>
-
 
 <div class="offset-1 col-10 list-div" style="margin-top: 2rem;">
 	<div class="row d-flex justify-content-center">
-		<div class="col-md col-lg-6">
+		<div class="col-md col-lg-10">
 		<div class="overview-item overview-item--c3">
 			<div class="overview__inner">
 				<div class="overview-box clearfix">
@@ -263,119 +57,14 @@
 						<i class="fas fa-calendar-check"></i>
 					</div>
 					<div class="text">
-						<h2>Tareas del mes</h2>
+						<h2>{{ formato_mes }}</h2>
+						<span>Total de horas invertidas en las tareas del mes</span>
 						<br>
 					</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
-
-<div class="container">
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th scope="col">Nombre Tarea</th>
-				<th scope="col">Tiempo</th>
-				<th scope="col">Status</th>
-				<th scope="col"></th>
-				<th scope="col"></th>
-				<th scope="col"></th>	
-			</tr>
-			
-		</thead>
-		<tbody>
-			{% if tareas_mes %}
-			{% for tarea in tareas_mes %}
-			<tr>
-				<td>{{ tarea.nombre_tarea }}</td>
-				<td>{{ tarea.tiempo_total_formato }}</td>
-				{% if tarea.status == 'activa' %}
-					<td><span class="badge badge-secondary">Por Terminar</span></td>
-					<td>
-						<a href="{% url 'tarea:iniciar' tarea.id %}" class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true">Reanudar</a>
-					</td>
-					<td>
-						<a href="{% url 'tarea:finalizar' tarea.id %}" class="btn btn-outline-success btn-sm" role="button" aria-pressed="true">Finalizar</a>
-					</td>
-				{% else %}
-				<!--<td style="color: darkblue;">Finalizada</a></td>-->
-				<td class="project-state">
-					<span class="badge badge-success">Finalizada</span>
-				</td>
-				<td></td>
-				<td><i class="fas fa-check"></i></td>
-				{% endif %}
-				<td class="project-actions text-right">
-					<a class="btn btn-primary btn-sm" href="{% url 'tarea:mostrar_tarea' tarea.id %}">
-						<i class="far fa-eye"></i>
-					</a>
-					<a class="btn btn-info btn-sm" href="{% url 'tarea:modificar_tarea' tarea.id %}">
-						<i class="fas fa-edit"></i>
-					</a>
-					<a href="#myModal" class="btn btn-danger btn-sm" data-toggle="modal">
-						<i class="far fa-trash-alt"></i>
-					</a>
-				</td>			
-			</tr>
-			<!-- Modal para eliminar tarea -->
-			<div id="myModal" class="modal fade">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">Confirmación</h5>
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-						</div>
-						<div class="modal-body">
-							<p>¿Seguro que quieres eliminar la tarea, "{{ tarea.nombre_tarea }}"?</p>
-							<p class="text-secondary"><small>Si lo haces no podrás recuperarla :(</small></p>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-							<a class="btn btn-danger" href="{% url 'tarea:eliminar_tarea' tarea.id %}">Eliminar</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			{% endfor %}
-
-			{% else %}
-			<div class="offset-3 col-12 list-div">
-				<div class="card bg-gradient-light w-50" style="margin-left: 30px;">
-					<div class="card-body">
-						<h1>No hay tareas disponibles</h1>
-					</div>
-				</div>
-			</div>
-			{% endif %}
-			<tr>
-				<td>
-					Tiempo total de tareas: {{ formato_mes }}
-				</td>
-			</tr>		
-		
-		</tbody>
-	</table>
-</div>
-
-<div class="offset-1 col-10 list-div" style="margin-top: 1rem;">
-	<div class="pagination">
-		<span class="step-links">
-			{% if tareas_sem.has_previous %}
-			<li class="page-item"><a class="page-link" href="?page={{ tareas.previous_page_number }}"><i class="fas fa-arrow-left"></i></a></li>
-			{% endif %}
-
-			{% if tareas_sem.paginator.num_pages %}
-			<span class="current">
-				{{ tareas.number}} de {{ tareas.paginator.num_pages}}
-			</span>
-			{% endif %}
-			{% if tareas_sem.has_next %}
-			<li class="page-item"><a class="page-link" href="?page={{ tareas.next_page_number }}"><i class="fas fa-arrow-right"></i></a></li>
-			{% endif %}
-		</span>
 	</div>
 </div>
 
