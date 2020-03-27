@@ -54,11 +54,13 @@
 		</div>
 		
 		<form method='get'>
-			<div class="row text-right">
+			<div class="row">
+				<div class="col">
 				{% crispy myFilter.form %}
-				
-				<input type="submit" class="btn-secondary btn-sm offset-1" Value="Filtrar"></input>
-			
+				</div>
+				<div class="col-3">
+					<input type="submit" class="btn btn-secondary btn-sm" Value="Filtrar"></input>
+				</div>
 			</div>
 		</form>
 	</div>
