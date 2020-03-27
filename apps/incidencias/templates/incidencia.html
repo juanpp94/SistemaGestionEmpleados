@@ -25,13 +25,22 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <a href="{% url 'incidencias:lista' %}" class="btn btn-secondary">Lista</a>
+                    <a href="{% url 'incidencias:lista' %}" class="btn btn-secondary">
+                        <i class="fas fa-angle-left"></i>
+                        Volver a la lista
+                    </a>
                 </div>
                 <div class="col">
-                    <a href="{% url 'incidencias:editar' incidencia.id %}" class="btn btn-secondary">Editar</a>
+                    <a href="{% url 'incidencias:editar' incidencia.id %}" class="btn btn-warning">
+                        <i class="fas fa-edit"></i>
+                        Editar
+                    </a>
                 </div>
                 <div class="col">
-                    <a href="{% url 'incidencias:eliminar' incidencia.id %}" class="btn btn-danger">Eliminar</a>
+                    <a href="{% url 'incidencias:eliminar' incidencia.id %}" class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                        Eliminar
+                    </a>
                 </div>
             </div>
         </div>

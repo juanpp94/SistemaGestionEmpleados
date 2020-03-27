@@ -4,7 +4,7 @@
 {% if estado_registro %}
   <h1>Registro exitoso</h1>
   <hr>
-  <a class="small" href="{% url 'ingreso' %}">Inicia Sesion</a>
+  <a class="small" href="{% url 'ingreso' %}">Inicia Sesión</a>
 {% else %}
   <h4>Registro</h4>
   <form enctype="multipart/form-data" method="POST">
@@ -63,6 +63,6 @@
     </button>
   </form>
   <hr>
-  <a class="small" href="{% url 'ingreso' %}">Inicia Sesion</a>
+  <a class="small" href="{% url 'ingreso' %}">Inicia Sesión</a>
 {% endif %}
 {% endblock %}

@@ -28,7 +28,10 @@
 
             <div class="row">
                 <div class="col">
-                    <a href="{% url 'incidencias:lista' %}" class="btn btn-secondary">Lista</a>
+                    <a href="{% url 'incidencias:lista' %}" class="btn btn-secondary">
+                        <i class="fas fa-angle-left"></i>
+                        Volver a la lista
+                    </a>
                 </div>
                 <div class="col">
                     <form enctype="multipart/form-data" method="post">
@@ -36,7 +39,10 @@
                         <div style="display:none; ">
                             {{form.as_p}}
                         </div>
-                        <button class="btn btn-danger" type="submit">Eliminar</button>
+                        <button class="btn btn-danger" type="submit">
+                            <i class="fas fa-trash"></i>
+                            Eliminar
+                        </button>
                     </form>
                 </div>
         </div>

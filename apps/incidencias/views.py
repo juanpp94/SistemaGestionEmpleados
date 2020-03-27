@@ -31,7 +31,7 @@ def incidencia_crear(request):
             from_email = settings.EMAIL_HOST_USER
             addresses = [user_email, settings.EMAIL_HOST_USER]
             send_mail(subject, message, from_email, addresses, fail_silently=True)
-            return redirect('incidencias:mostrar', user)
+            return redirect('incidencias:mostrar', incidencia.id)
     else:
         form = IncidenciaForm()
     return render(request,'incidencias_form.html',{'form':form, 'perfil':perfil})
@@ -55,7 +55,7 @@ def incidencia_editar(request, pk):
             incidencia = form.save(commit=False)
             incidencia.usuario_id = user
             incidencia.save()
-            return redirect('incidencias:mostrar', user)
+            return redirect('incidencias:mostrar', incidencia.id)
     context = {
         'form':form, 
         'perfil':perfil
