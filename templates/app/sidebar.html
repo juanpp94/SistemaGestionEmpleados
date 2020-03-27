@@ -32,7 +32,7 @@
     </li>
     
     <!-- Nav Item - Horas -->
-    <li class="nav-item {% if "tarea" in request.resolver_match.view_name %}active{% endif %}">
+    <li class="nav-item {% if  request.resolver_match.url_name == "horas" %}active{% endif %}">
         <a class="nav-link" href="{% url 'tarea:horas' %}">
             <i class="fas fa-clock"></i>
             <span>Horas</span>
